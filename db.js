@@ -7,21 +7,18 @@ dns.setServers(['8.8.8.8', '1.1.1.1']);
 
 dotenv.config();
 
+// Disable buffering commands when MongoDB is disconnected
+mongoose.set('bufferCommands', false);
+
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/gharkasathi';
 
 // Connect to MongoDB with async non-blocking handling
 export const connectDB = async () => {
   try {
-    await mongoose.connect(MONGODB_URI, { serverSelectionTimeoutMS: 2500 });
+    await mongoose.connect(MONGODB_URI, { serverSelectionTimeoutMS: 500 });
     console.log(`Connected to MongoDB Atlas cloud database successfully!`);
   } catch (err) {
-    console.warn('MongoDB Atlas Warning:', err.message);
-    try {
-      await mongoose.connect('mongodb://127.0.0.1:27017/gharkasathi', { serverSelectionTimeoutMS: 1500 });
-      console.log('Connected to local MongoDB instance.');
-    } catch (localErr) {
-      console.warn('Local MongoDB warning: Server operating in offline memory mode.');
-    }
+    console.warn('MongoDB Atlas Warning: Operating in fast offline memory mode.');
   }
 };
 
@@ -273,6 +270,7 @@ export const initDB = async () => {
     console.warn('Database connection unavailable. Operating with in-memory fallback models.');
     return;
   }
+  const categoryCount = await Category.countDocuments();
   if (categoryCount === 0) {
     console.log('Seeding initial categories...');
     const initialCategories = [

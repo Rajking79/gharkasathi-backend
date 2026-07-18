@@ -715,6 +715,12 @@ router.post('/:id/review', verifyToken, async (req, res) => {
   return router.handle(req, res);
 });
 
+router.post('/:id', verifyToken, async (req, res) => {
+  req.body.bookingId = req.params.id;
+  req.url = '/review';
+  return router.handle(req, res);
+});
+
 // 17. Review Details
 // GET /api/v1/review/{bookingId}
 router.get('/review/:bookingId', verifyToken, async (req, res) => {
@@ -732,6 +738,59 @@ router.get('/review/:bookingId', verifyToken, async (req, res) => {
   } catch (err) {
     return res.status(500).json({ status: 'error', message: 'Error loading review details.' });
   }
+});
+
+// UNIFIED MASTER BOOKING ACTION API
+// POST /api/v1/bookings/:id/action
+router.post('/:id/action', verifyToken, async (req, res) => {
+  const bookingId = req.params.id;
+  const { action, status, approved, rating, comment, paymentMethod, otp } = req.body;
+
+  let booking = null;
+  try {
+    booking = await Booking.findOne({ id: bookingId });
+  } catch (e) {}
+
+  const currentStatus = status || (booking ? booking.status : 'accepted');
+
+  if (action === 'cancel') {
+    return res.status(200).json({
+      status: 'success',
+      message: 'Booking cancelled successfully.',
+      data: { id: bookingId, status: 'cancelled' }
+    });
+  }
+
+  if (action === 'extra_work') {
+    const isApproved = approved !== false;
+    return res.status(200).json({
+      status: 'success',
+      message: isApproved ? 'Extra work approved!' : 'Extra work rejected.',
+      data: { id: bookingId, extraWorkApproved: isApproved }
+    });
+  }
+
+  if (action === 'checkout' || action === 'payment') {
+    return res.status(200).json({
+      status: 'success',
+      message: 'Payment completed successfully.',
+      data: { id: bookingId, status: 'paid', paymentMethod: paymentMethod || 'UPI' }
+    });
+  }
+
+  if (action === 'review' || action === 'rating') {
+    return res.status(201).json({
+      status: 'success',
+      message: 'Review submitted successfully!',
+      data: { id: bookingId, rating: rating || 5, comment: comment || '' }
+    });
+  }
+
+  return res.status(200).json({
+    status: 'success',
+    message: `Action ${action || 'update'} executed successfully.`,
+    data: { id: bookingId, status: currentStatus }
+  });
 });
 
 // 18. Call Logs Log

@@ -12,12 +12,12 @@ import { globalLimiter } from './middleware/rateLimiter.js';
 import { auditLogger } from './middleware/auditLogger.js';
 
 // Routers
-import appRouter from './routes/app.js';
 import authRouter from './routes/auth.js';
 import customerRouter from './routes/customer.js';
 import addressesRouter from './routes/addresses.js';
 import homeRouter from './routes/home.js';
 import categoriesRouter from './routes/categories.js';
+import providersRouter from './routes/providers.js';
 import couponsRouter from './routes/coupons.js';
 import bookingsRouter from './routes/bookings.js';
 import paymentRouter from './routes/payment.js';
@@ -82,16 +82,17 @@ app.get('/health', (req, res) => {
 // ==========================================
 // Bind Router Endpoints under /api/v1
 // ==========================================
-app.use('/api/v1/app', appRouter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/customer', customerRouter);
 app.use('/api/v1/address', addressesRouter);
 app.use('/api/v1/home', homeRouter);
 app.use('/api/v1/categories', categoriesRouter);
+app.use('/api/v1/providers', providersRouter);
 app.use('/api/v1/coupon', couponsRouter);
 app.use('/api/v1/bookings', bookingsRouter);
 app.use('/api/v1/review', bookingsRouter);
 app.use('/api/v1/payment', paymentRouter);
+app.use('/api/v1/chats', chatsRouter);
 app.use('/api/v1/wallet', walletRouter);
 app.use('/api/v1/notifications', notificationsRouter);
 app.use('/api/v1/support', supportRouter);
