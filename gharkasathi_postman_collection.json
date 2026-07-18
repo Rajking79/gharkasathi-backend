@@ -1,8 +1,8 @@
 {
   "info": {
-    "_postman_id": "gharkasathi-clean-flat-2026",
-    "name": "Ghar Ka Sathi Production APIs",
-    "description": "Clean, flat 1-level Postman Collection for Ghar Ka Sathi matching Account Master API structure.",
+    "_postman_id": "gharkasathi-customer-app-only-2026",
+    "name": "Ghar Ka Sathi Customer App APIs",
+    "description": "Strictly Customer App (GharKaSathiUserApp) API Collection. Every endpoint maps to a Customer App screen.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -15,19 +15,14 @@
       "key": "user_token",
       "value": "",
       "type": "string"
-    },
-    {
-      "key": "provider_token",
-      "value": "",
-      "type": "string"
     }
   ],
   "item": [
     {
-      "name": "App Initialization",
+      "name": "App Launch & Initialization",
       "item": [
         {
-          "name": "Check Health Status",
+          "name": "Healthcheck",
           "request": {
             "method": "GET",
             "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/health", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["health"] }
@@ -48,7 +43,7 @@
           }
         },
         {
-          "name": "Get App Config Parameters",
+          "name": "Get App Configuration",
           "request": {
             "method": "GET",
             "url": { "raw": "{{baseUrl}}/app/config", "host": ["{{baseUrl}}"], "path": ["app", "config"] }
@@ -57,10 +52,10 @@
       ]
     },
     {
-      "name": "Auth",
+      "name": "Customer Auth",
       "item": [
         {
-          "name": "Send OTP (Customer)",
+          "name": "Send Customer Mobile OTP",
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -69,7 +64,7 @@
           }
         },
         {
-          "name": "Verify OTP (Customer - Get JWT)",
+          "name": "Verify OTP & Get Customer JWT Token",
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -78,16 +73,7 @@
           }
         },
         {
-          "name": "Verify OTP (Provider - Get JWT)",
-          "request": {
-            "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n  \"phone\": \"9876543210\",\n  \"otp\": \"123456\",\n  \"role\": \"provider\"\n}" },
-            "url": { "raw": "{{baseUrl}}/auth/verify-otp", "host": ["{{baseUrl}}"], "path": ["auth", "verify-otp"] }
-          }
-        },
-        {
-          "name": "Refresh Access Token",
+          "name": "Refresh Customer Access Token",
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -96,7 +82,7 @@
           }
         },
         {
-          "name": "User Logout",
+          "name": "Logout Customer Session",
           "request": {
             "method": "POST",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
@@ -104,7 +90,7 @@
           }
         },
         {
-          "name": "Delete Account Permanently",
+          "name": "Delete Customer Account",
           "request": {
             "method": "DELETE",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
@@ -117,7 +103,7 @@
       "name": "Customer Profile & Addresses",
       "item": [
         {
-          "name": "Get Customer Profile",
+          "name": "Get Customer Profile Details",
           "request": {
             "method": "GET",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
@@ -125,19 +111,31 @@
           }
         },
         {
-          "name": "Create / Update Profile",
+          "name": "Create / Complete Customer Profile",
           "request": {
             "method": "POST",
             "header": [
               { "key": "Content-Type", "value": "application/json" },
               { "key": "Authorization", "value": "Bearer {{user_token}}" }
             ],
-            "body": { "mode": "raw", "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"gender\": \"Male\",\n  \"dob\": \"1992-05-15\"\n}" },
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"John Customer\",\n  \"email\": \"john@example.com\",\n  \"gender\": \"Male\",\n  \"dob\": \"1992-05-15\"\n}" },
             "url": { "raw": "{{baseUrl}}/customer/profile", "host": ["{{baseUrl}}"], "path": ["customer", "profile"] }
           }
         },
         {
-          "name": "Upload Profile Avatar Image",
+          "name": "Update Customer Profile Info",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"John Updated\"\n}" },
+            "url": { "raw": "{{baseUrl}}/customer/profile", "host": ["{{baseUrl}}"], "path": ["customer", "profile"] }
+          }
+        },
+        {
+          "name": "Upload Customer Avatar Image",
           "request": {
             "method": "POST",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
@@ -149,7 +147,7 @@
           }
         },
         {
-          "name": "Get Address Book",
+          "name": "Get Saved Address Book",
           "request": {
             "method": "GET",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
@@ -157,7 +155,7 @@
           }
         },
         {
-          "name": "Add Address to Book",
+          "name": "Add New Address to Book",
           "request": {
             "method": "POST",
             "header": [
@@ -171,24 +169,24 @@
       ]
     },
     {
-      "name": "Dashboard",
+      "name": "Home Dashboard Feed",
       "item": [
         {
-          "name": "Get Home Dashboard Feed",
+          "name": "Get Customer Home Dashboard Feed",
           "request": {
             "method": "GET",
             "url": { "raw": "{{baseUrl}}/home", "host": ["{{baseUrl}}"], "path": ["home"] }
           }
         },
         {
-          "name": "Get Banners Carousel",
+          "name": "Get Promotional Banners",
           "request": {
             "method": "GET",
             "url": { "raw": "{{baseUrl}}/home/banners", "host": ["{{baseUrl}}"], "path": ["home", "banners"] }
           }
         },
         {
-          "name": "Get Featured Services",
+          "name": "Get Featured Top Services",
           "request": {
             "method": "GET",
             "url": { "raw": "{{baseUrl}}/home/featured", "host": ["{{baseUrl}}"], "path": ["home", "featured"] }
@@ -197,17 +195,17 @@
       ]
     },
     {
-      "name": "Categories & Services",
+      "name": "Categories & Services Search",
       "item": [
         {
-          "name": "Get Category List",
+          "name": "Get All Service Categories",
           "request": {
             "method": "GET",
             "url": { "raw": "{{baseUrl}}/categories", "host": ["{{baseUrl}}"], "path": ["categories"] }
           }
         },
         {
-          "name": "Get Category Details",
+          "name": "Get Category & Sub-Services Details",
           "request": {
             "method": "GET",
             "url": { "raw": "{{baseUrl}}/categories/cat_plumber", "host": ["{{baseUrl}}"], "path": ["categories", "cat_plumber"] }
@@ -223,23 +221,20 @@
       ]
     },
     {
-      "name": "Coupons",
+      "name": "Coupons & Offers",
       "item": [
         {
-          "name": "Get Available Coupons",
+          "name": "Get Available Promo Coupons List",
           "request": {
             "method": "GET",
             "url": { "raw": "{{baseUrl}}/coupon", "host": ["{{baseUrl}}"], "path": ["coupon"] }
           }
         },
         {
-          "name": "Validate Promo Coupon",
+          "name": "Validate & Apply Promo Coupon",
           "request": {
             "method": "POST",
-            "header": [
-              { "key": "Content-Type", "value": "application/json" },
-              { "key": "Authorization", "value": "Bearer {{user_token}}" }
-            ],
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": { "mode": "raw", "raw": "{\n  \"code\": \"SGSAVE30\",\n  \"amount\": 399\n}" },
             "url": { "raw": "{{baseUrl}}/coupon/validate", "host": ["{{baseUrl}}"], "path": ["coupon", "validate"] }
           }
@@ -247,7 +242,7 @@
       ]
     },
     {
-      "name": "Bookings",
+      "name": "Customer Bookings",
       "item": [
         {
           "name": "Create New Booking",
@@ -262,7 +257,7 @@
           }
         },
         {
-          "name": "Get Bookings History",
+          "name": "Get Customer Bookings History",
           "request": {
             "method": "GET",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
@@ -278,7 +273,7 @@
           }
         },
         {
-          "name": "Reschedule Time Slot",
+          "name": "Reschedule Booking Time Slot",
           "request": {
             "method": "PATCH",
             "header": [
@@ -290,31 +285,7 @@
           }
         },
         {
-          "name": "Verify Arrival OTP Code",
-          "request": {
-            "method": "POST",
-            "header": [
-              { "key": "Content-Type", "value": "application/json" },
-              { "key": "Authorization", "value": "Bearer {{provider_token}}" }
-            ],
-            "body": { "mode": "raw", "raw": "{\n  \"otp\": \"5402\"\n}" },
-            "url": { "raw": "{{baseUrl}}/bookings/bk_1784387265906/verify-otp", "host": ["{{baseUrl}}"], "path": ["bookings", "bk_1784387265906", "verify-otp"] }
-          }
-        },
-        {
-          "name": "Request Extra Work",
-          "request": {
-            "method": "POST",
-            "header": [
-              { "key": "Content-Type", "value": "application/json" },
-              { "key": "Authorization", "value": "Bearer {{provider_token}}" }
-            ],
-            "body": { "mode": "raw", "raw": "{\n  \"cost\": 150,\n  \"reason\": \"Extra pipe labor\"\n}" },
-            "url": { "raw": "{{baseUrl}}/bookings/bk_1784387265906/extra-work", "host": ["{{baseUrl}}"], "path": ["bookings", "bk_1784387265906", "extra-work"] }
-          }
-        },
-        {
-          "name": "Approve Extra Work",
+          "name": "Customer Approve Extra Work",
           "request": {
             "method": "POST",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
@@ -322,15 +293,7 @@
           }
         },
         {
-          "name": "Mark Job Completed",
-          "request": {
-            "method": "POST",
-            "header": [{ "key": "Authorization", "value": "Bearer {{provider_token}}" }],
-            "url": { "raw": "{{baseUrl}}/bookings/bk_1784387265906/complete", "host": ["{{baseUrl}}"], "path": ["bookings", "bk_1784387265906", "complete"] }
-          }
-        },
-        {
-          "name": "Pay & Settle Commission",
+          "name": "Pay & Settle Booking Payment",
           "request": {
             "method": "POST",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
@@ -338,7 +301,7 @@
           }
         },
         {
-          "name": "Submit Rating Feedback",
+          "name": "Submit Rating & Review Feedback",
           "request": {
             "method": "POST",
             "header": [
@@ -352,35 +315,10 @@
       ]
     },
     {
-      "name": "Wallet",
+      "name": "Customer Notifications & Support",
       "item": [
         {
-          "name": "Get Wallet Balance & History",
-          "request": {
-            "method": "GET",
-            "header": [{ "key": "Authorization", "value": "Bearer {{provider_token}}" }],
-            "url": { "raw": "{{baseUrl}}/wallet/balance", "host": ["{{baseUrl}}"], "path": ["wallet", "balance"] }
-          }
-        },
-        {
-          "name": "Request Payout Withdrawal",
-          "request": {
-            "method": "POST",
-            "header": [
-              { "key": "Content-Type", "value": "application/json" },
-              { "key": "Authorization", "value": "Bearer {{provider_token}}" }
-            ],
-            "body": { "mode": "raw", "raw": "{\n  \"amount\": 500,\n  \"upiId\": \"rajesh@upi\"\n}" },
-            "url": { "raw": "{{baseUrl}}/wallet/payout", "host": ["{{baseUrl}}"], "path": ["wallet", "payout"] }
-          }
-        }
-      ]
-    },
-    {
-      "name": "Support & Notifications",
-      "item": [
-        {
-          "name": "Get User Notifications",
+          "name": "Get Customer Notifications List",
           "request": {
             "method": "GET",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
@@ -400,7 +338,7 @@
           }
         },
         {
-          "name": "Trigger SOS Panic Alert",
+          "name": "Trigger SOS Panic Safety Alert",
           "request": {
             "method": "POST",
             "header": [
