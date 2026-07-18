@@ -65,6 +65,11 @@ if (fs.existsSync('./swagger-spec.json')) {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 }
 
+// Serve raw OpenAPI JSON for Postman automatic link import & sync
+app.get('/swagger.json', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'swagger-spec.json'));
+});
+
 // Base checking endpoint
 app.get('/health', (req, res) => {
   res.status(200).json({
