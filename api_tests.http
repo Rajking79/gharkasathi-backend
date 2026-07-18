@@ -1,0 +1,141 @@
+### 1. Healthcheck (स्थिति जांचें)
+GET http://127.0.0.1:8080/health
+
+###
+
+### 2. Get Categories Catalog (कैटेगरी लिस्ट मंगाएं)
+GET http://127.0.0.1:8080/api/categories
+
+###
+
+### 3. Send OTP (OTP भेजें)
+POST http://127.0.0.1:8080/api/auth/otp/send
+Content-Type: application/json
+
+{
+  "phone": "9876543210"
+}
+
+###
+
+### 4. Verify OTP (OTP वेरीफाई करके JWT टोकन पाएं)
+POST http://127.0.0.1:8080/api/auth/otp/verify
+Content-Type: application/json
+
+{
+  "phone": "9876543210",
+  "code": "123456",
+  "role": "user"
+}
+
+###
+
+### 5. Complete Profile (कस्टमर प्रोफाइल पूरी करें)
+# नोट: नीचे "Bearer" के बाद स्टेप 4 से मिला टोकन पेस्ट करें
+POST http://127.0.0.1:8080/api/auth/profile/complete
+Content-Type: application/json
+Authorization: Bearer <PASTE_YOUR_JWT_TOKEN_HERE>
+
+{
+  "name": "Rajesh Singh",
+  "email": "rajesh.singh@example.com",
+  "gender": "Male",
+  "dob": "1995-08-15",
+  "address": "H.No 124, Sector 15",
+  "city": "Gurugram",
+  "state": "Haryana",
+  "pincode": "122001",
+  "profilePicture": "https://randomuser.me/api/portraits/men/32.jpg"
+}
+
+###
+
+### 6. Create Booking (नई सर्विस बुक करें)
+POST http://127.0.0.1:8080/api/bookings/create
+Content-Type: application/json
+Authorization: Bearer <PASTE_YOUR_JWT_TOKEN_HERE>
+
+{
+  "categoryId": "cat_plumber",
+  "subServiceId": "sub_pl_leak",
+  "dateTime": "2026-07-20T10:00:00Z",
+  "timeSlot": "10:00 AM - 12:00 PM",
+  "address": "H.No 124, Sector 15, Gurugram",
+  "problemDescription": "Bathroom kitchen tap is leaking constantly",
+  "hasVoiceNote": false,
+  "paymentMethod": "UPI"
+}
+
+###
+
+### 7. Get User Bookings List (बुकिंग हिस्ट्री देखें)
+GET http://127.0.0.1:8080/api/bookings/user
+Authorization: Bearer <PASTE_YOUR_JWT_TOKEN_HERE>
+
+###
+
+### 8. Get Notifications (नोटिफिकेशन देखें)
+GET http://127.0.0.1:8080/api/notifications
+Authorization: Bearer <PASTE_YOUR_JWT_TOKEN_HERE>
+
+###
+
+### 9. Register Device FCM Token (FCM टोकन दर्ज करें)
+POST http://127.0.0.1:8080/api/auth/device-token
+Content-Type: application/json
+Authorization: Bearer <PASTE_YOUR_JWT_TOKEN_HERE>
+
+{
+  "fcmToken": "fcm_token_demo_1234567890",
+  "deviceId": "device_id_windows_11"
+}
+
+###
+
+### 10. Validate Coupon Code (कूपन कोड चेक करें)
+POST http://127.0.0.1:8080/api/coupons/validate
+Content-Type: application/json
+Authorization: Bearer <PASTE_YOUR_JWT_TOKEN_HERE>
+
+{
+  "couponCode": "SGSAVE30",
+  "basePrice": 399
+}
+
+###
+
+### 11. Add Saved Address (एड्रेस सेव करें)
+POST http://127.0.0.1:8080/api/user/addresses
+Content-Type: application/json
+Authorization: Bearer <PASTE_YOUR_JWT_TOKEN_HERE>
+
+{
+  "addressLine": "Flat 302, Phase 3, Green Gardens",
+  "city": "Noida",
+  "state": "Uttar Pradesh",
+  "pincode": "201301",
+  "isDefault": true
+}
+
+###
+
+### 12. Get Saved Addresses List (सेव किए पते देखें)
+GET http://127.0.0.1:8080/api/user/addresses
+Authorization: Bearer <PASTE_YOUR_JWT_TOKEN_HERE>
+
+###
+
+### 13. Upload Work Photos (काम के पहले/बाद के फोटो अपलोड करें - एक्सपर्ट)
+# नोट: :id को वास्तविक बुकिंग आईडी (जैसे: bk_1784329314847) से बदलें
+POST http://127.0.0.1:8080/api/bookings/:id/photos
+Content-Type: application/json
+Authorization: Bearer <PASTE_YOUR_JWT_TOKEN_HERE>
+
+{
+  "type": "before",
+  "photos": [
+    "https://example.com/work_before_1.jpg",
+    "https://example.com/work_before_2.jpg"
+  ]
+}
+

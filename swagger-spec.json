@@ -1,0 +1,1212 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Ghar Ka Sathi Production APIs",
+    "version": "1.0.0",
+    "description": "Comprehensive interactive API documentation for customer, expert, and admin application workflows. Built to support 80+ endpoints."
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8080/api/v1",
+      "description": "Local Development Server"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/app/version": {
+      "get": {
+        "tags": ["1. App Initialization"],
+        "summary": "Check App Version",
+        "description": "App Open होते ही Latest Version Check करना।",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "latestVersion": "1.2.0",
+                    "minimumVersion": "1.0.5",
+                    "forceUpdate": false,
+                    "maintenance": false
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app/maintenance": {
+      "get": {
+        "tags": ["1. App Initialization"],
+        "summary": "Maintenance Check",
+        "description": "Server Maintenance स्थिति जांचें।",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "maintenance": false,
+                    "message": "Operational"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/app/config": {
+      "get": {
+        "tags": ["1. App Initialization"],
+        "summary": "App Configuration parameters",
+        "description": "Returns settings like GST, Platform Fee, SOS active states.",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/auth/send-otp": {
+      "post": {
+        "tags": ["2. Authentication"],
+        "summary": "Send OTP SMS",
+        "description": "Sends verification OTP to mobile.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "mobile": { "type": "string", "example": "9876543210" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "OTP Sent" }
+        }
+      }
+    },
+    "/auth/verify-otp": {
+      "post": {
+        "tags": ["2. Authentication"],
+        "summary": "Verify OTP & Generate JWT",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "mobile": { "type": "string", "example": "9876543210" },
+                  "otp": { "type": "string", "example": "123456" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Token generated" }
+        }
+      }
+    },
+    "/auth/refresh": {
+      "post": {
+        "tags": ["2. Authentication"],
+        "summary": "Refresh Access Token",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "refreshToken": { "type": "string", "example": "refresh_123" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "New access token" }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": ["2. Authentication"],
+        "summary": "Logout from session",
+        "responses": {
+          "200": { "description": "Logged out" }
+        }
+      }
+    },
+    "/auth/account": {
+      "delete": {
+        "tags": ["2. Authentication"],
+        "summary": "Delete Account Permanently",
+        "responses": {
+          "200": { "description": "Account deleted" }
+        }
+      }
+    },
+    "/customer/profile": {
+      "post": {
+        "tags": ["3. Customer Profile"],
+        "summary": "Create Profile details",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string", "example": "Amit Sharma" },
+                  "email": { "type": "string", "example": "amit@example.com" },
+                  "gender": { "type": "string", "example": "Male" },
+                  "dob": { "type": "string", "example": "1997-04-12" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Profile saved" }
+        }
+      },
+      "get": {
+        "tags": ["3. Customer Profile"],
+        "summary": "Get Profile details",
+        "responses": {
+          "200": { "description": "Success" }
+        }
+      },
+      "put": {
+        "tags": ["3. Customer Profile"],
+        "summary": "Update Profile details",
+        "responses": {
+          "200": { "description": "Profile updated" }
+        }
+      }
+    },
+    "/customer/profile/image": {
+      "post": {
+        "tags": ["3. Customer Profile"],
+        "summary": "Upload Profile Avatar Image",
+        "responses": {
+          "200": { "description": "Uploaded image url details" }
+        }
+      }
+    },
+    "/address": {
+      "post": {
+        "tags": ["4. Address Management"],
+        "summary": "Add Address to Book",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "house": { "type": "string", "example": "Flat 302" },
+                  "building": { "type": "string", "example": "Green Gardens" },
+                  "landmark": { "type": "string", "example": "Opp petrol pump" },
+                  "latitude": { "type": "number", "example": 28.5355 },
+                  "longitude": { "type": "number", "example": 77.3910 },
+                  "tag": { "type": "string", "example": "Home" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Saved" }
+        }
+      },
+      "get": {
+        "tags": ["4. Address Management"],
+        "summary": "Get All Address Book",
+        "responses": {
+          "200": { "description": "Address items array" }
+        }
+      }
+    },
+    "/address/{id}": {
+      "put": {
+        "tags": ["4. Address Management"],
+        "summary": "Update Saved Address details",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Updated" }
+        }
+      },
+      "delete": {
+        "tags": ["4. Address Management"],
+        "summary": "Delete Address item",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Deleted" }
+        }
+      }
+    },
+    "/address/default": {
+      "patch": {
+        "tags": ["4. Address Management"],
+        "summary": "Set Default Address indicator",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "addressId": { "type": "string", "example": "addr_123" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Default updated" }
+        }
+      }
+    },
+    "/home": {
+      "get": {
+        "tags": ["5. Home Dashboard"],
+        "summary": "Home Dashboard Consolidated feed",
+        "responses": {
+          "200": { "description": "Combined dashboard feed" }
+        }
+      }
+    },
+    "/services/search": {
+      "get": {
+        "tags": ["5. Home Dashboard"],
+        "summary": "Search Services by Keyword",
+        "parameters": [
+          { "name": "keyword", "in": "query", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Match list" }
+        }
+      }
+    },
+    "/services/popular": {
+      "get": {
+        "tags": ["5. Home Dashboard"],
+        "summary": "Get Popular Services list",
+        "responses": {
+          "200": { "description": "Popular list" }
+        }
+      }
+    },
+    "/services/recommended": {
+      "get": {
+        "tags": ["5. Home Dashboard"],
+        "summary": "Get Recommended Services list",
+        "responses": {
+          "200": { "description": "Recommended list" }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "tags": ["6. Categories & Services Catalog"],
+        "summary": "Get Category List",
+        "responses": {
+          "200": { "description": "Category catalog array" }
+        }
+      }
+    },
+    "/categories/{id}": {
+      "get": {
+        "tags": ["6. Categories & Services Catalog"],
+        "summary": "Get Category Details",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Details" }
+        }
+      }
+    },
+    "/categories/{id}/services": {
+      "get": {
+        "tags": ["6. Categories & Services Catalog"],
+        "summary": "Get Services inside Category",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Services list" }
+        }
+      }
+    },
+    "/categories/service/details/{id}": {
+      "get": {
+        "tags": ["7. Service Details"],
+        "summary": "Get Service Details & FAQs",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Detailed specs, inclusions, exclusions" }
+        }
+      }
+    },
+    "/categories/service/estimate": {
+      "post": {
+        "tags": ["7. Service Details"],
+        "summary": "Estimate price billing bill",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "serviceId": { "type": "string", "example": "sub_pl_leak" },
+                  "coupon": { "type": "string", "example": "SGSAVE30" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Dynamic calculated bill values" }
+        }
+      }
+    },
+    "/coupon": {
+      "get": {
+        "tags": ["8. Coupon Management"],
+        "summary": "Get Available Coupons list",
+        "responses": {
+          "200": { "description": "Coupons list" }
+        }
+      }
+    },
+    "/coupon/validate": {
+      "post": {
+        "tags": ["8. Coupon Management"],
+        "summary": "Validate Promo Coupon code",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "couponCode": { "type": "string", "example": "SGSAVE30" },
+                  "basePrice": { "type": "number", "example": 399 }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Coupon details" }
+        }
+      }
+    },
+    "/bookings": {
+      "post": {
+        "tags": ["9. Bookings Lifecycle"],
+        "summary": "Create new service booking",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "categoryId": { "type": "string", "example": "cat_plumber" },
+                  "subServiceId": { "type": "string", "example": "sub_pl_leak" },
+                  "dateTime": { "type": "string", "example": "2026-07-25T10:00:00Z" },
+                  "timeSlot": { "type": "string", "example": "10:00 AM - 12:00 PM" },
+                  "address": { "type": "string", "example": "Sector 15 Noida" },
+                  "problemDescription": { "type": "string", "example": "Kitchen pipeline leaks" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Created" }
+        }
+      },
+      "get": {
+        "tags": ["9. Bookings Lifecycle"],
+        "summary": "Get Bookings History (Filtered)",
+        "parameters": [
+          { "name": "filter", "in": "query", "schema": { "type": "string", "example": "Pending" } }
+        ],
+        "responses": {
+          "200": { "description": "Bookings array" }
+        }
+      }
+    },
+    "/bookings/{id}": {
+      "get": {
+        "tags": ["9. Bookings Lifecycle"],
+        "summary": "Get Booking Details by ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Details" }
+        }
+      }
+    },
+    "/bookings/{id}/cancel": {
+      "patch": {
+        "tags": ["9. Bookings Lifecycle"],
+        "summary": "Cancel booking request",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Cancelled" }
+        }
+      }
+    },
+    "/bookings/{id}/reschedule": {
+      "patch": {
+        "tags": ["9. Bookings Lifecycle"],
+        "summary": "Reschedule booking time slot",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "dateTime": { "type": "string", "example": "2026-07-26T14:00:00Z" },
+                  "timeSlot": { "type": "string", "example": "02:00 PM - 04:00 PM" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Rescheduled" }
+        }
+      }
+    },
+    "/bookings/{id}/rebook": {
+      "post": {
+        "tags": ["9. Bookings Lifecycle"],
+        "summary": "Rebook a past booking",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "201": { "description": "New duplicate booking created" }
+        }
+      }
+    },
+    "/bookings/{id}/status": {
+      "get": {
+        "tags": ["10. Tracking & Live Status"],
+        "summary": "Get Live Status timeline state",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Status value" }
+        }
+      }
+    },
+    "/bookings/{id}/tracking": {
+      "get": {
+        "tags": ["10. Tracking & Live Status"],
+        "summary": "Get Live Expert Coordinates",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Latitude, longitude and ETA values" }
+        }
+      }
+    },
+    "/bookings/{id}/timeline": {
+      "get": {
+        "tags": ["10. Tracking & Live Status"],
+        "summary": "Get Historical Status Timeline",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Timeline log events" }
+        }
+      }
+    },
+    "/bookings/{id}/expert": {
+      "get": {
+        "tags": ["11. Expert Partner Details"],
+        "summary": "Get Assigned Expert Details",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Provider stats" }
+        }
+      }
+    },
+    "/bookings/expert/profile/{id}": {
+      "get": {
+        "tags": ["11. Expert Partner Details"],
+        "summary": "Get Expert Profile details by ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Success" }
+        }
+      }
+    },
+    "/bookings/{id}/messages": {
+      "get": {
+        "tags": ["11. Expert Partner Details"],
+        "summary": "Get chat history messages",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Chat log array" }
+        }
+      },
+      "post": {
+        "tags": ["11. Expert Partner Details"],
+        "summary": "Send in-app chat message",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": { "type": "string", "example": "I am waiting at door" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Sent" }
+        }
+      }
+    },
+    "/bookings/call/log": {
+      "post": {
+        "tags": ["11. Expert Partner Details"],
+        "summary": "Log a Voice Call",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bookingId": { "type": "string", "example": "bk_123" },
+                  "durationSeconds": { "type": "number", "example": 45 }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Call logged" }
+        }
+      }
+    },
+    "/bookings/{id}/otp": {
+      "get": {
+        "tags": ["12. OTP Verification"],
+        "summary": "Get Booking Arrival OTP Code",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Returns 4-digit code" }
+        }
+      }
+    },
+    "/bookings/{id}/verify-otp": {
+      "post": {
+        "tags": ["12. OTP Verification"],
+        "summary": "Verify OTP code to Start Service",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "otp": { "type": "string", "example": "4280" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Job started status set" }
+        }
+      }
+    },
+    "/bookings/{id}/extra-work": {
+      "get": {
+        "tags": ["13. Additional Work / Material Approval"],
+        "summary": "Check Pending Extra Work Request details",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Extra cost detail values" }
+        }
+      },
+      "post": {
+        "tags": ["13. Additional Work / Material Approval"],
+        "summary": "Submit Extra Work Request (Expert)",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cost": { "type": "number", "example": 150 },
+                  "reason": { "type": "string", "example": "Tap replacement spindle" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Extra cost proposed" }
+        }
+      }
+    },
+    "/bookings/{id}/approve-extra": {
+      "post": {
+        "tags": ["13. Additional Work / Material Approval"],
+        "summary": "Approve Extra Work Invoice Cost",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Invoice updated and extra work approved" }
+        }
+      }
+    },
+    "/bookings/{id}/reject-extra": {
+      "post": {
+        "tags": ["13. Additional Work / Material Approval"],
+        "summary": "Reject Extra Work Proposal",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Cost proposal rejected" }
+        }
+      }
+    },
+    "/bookings/{id}/invoice": {
+      "get": {
+        "tags": ["14. Invoice Details"],
+        "summary": "Get Final Invoice breakdown details",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Detailed bill parameters" }
+        }
+      }
+    },
+    "/bookings/{id}/invoice/pdf": {
+      "get": {
+        "tags": ["14. Invoice Details"],
+        "summary": "Download PDF Invoice document link",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "PDF direct link" }
+        }
+      }
+    },
+    "/payment/create": {
+      "post": {
+        "tags": ["15. Payments Settling"],
+        "summary": "Create Razorpay Payment Intent",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bookingId": { "type": "string", "example": "bk_123" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Payment Intent ID generated" }
+        }
+      }
+    },
+    "/payment/verify": {
+      "post": {
+        "tags": ["15. Payments Settling"],
+        "summary": "Verify payment transaction capture",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bookingId": { "type": "string", "example": "bk_123" },
+                  "paymentIntentId": { "type": "string", "example": "pi_123" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Payment verified" }
+        }
+      }
+    },
+    "/payment/{id}": {
+      "get": {
+        "tags": ["15. Payments Settling"],
+        "summary": "Get transaction status by ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Status" }
+        }
+      }
+    },
+    "/payment/{id}/receipt": {
+      "get": {
+        "tags": ["15. Payments Settling"],
+        "summary": "Get digital receipt detail parameters",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Receipt download" }
+        }
+      }
+    },
+    "/wallet": {
+      "get": {
+        "tags": ["16. Wallet Ledger"],
+        "summary": "Get Wallet balances",
+        "responses": {
+          "200": { "description": "Balances" }
+        }
+      }
+    },
+    "/wallet/history": {
+      "get": {
+        "tags": ["16. Wallet Ledger"],
+        "summary": "Get Wallet Transactions History list",
+        "responses": {
+          "200": { "description": "Ledger entries" }
+        }
+      }
+    },
+    "/review": {
+      "post": {
+        "tags": ["17. Ratings & Reviews"],
+        "summary": "Submit service rating feedback",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bookingId": { "type": "string", "example": "bk_123" },
+                  "stars": { "type": "number", "example": 5 },
+                  "comment": { "type": "string", "example": "Great work" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Reviewed saved" }
+        }
+      }
+    },
+    "/review/{bookingId}": {
+      "get": {
+        "tags": ["17. Ratings & Reviews"],
+        "summary": "Get Review details of booking",
+        "parameters": [
+          { "name": "bookingId", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Review stars & details" }
+        }
+      }
+    },
+    "/notifications": {
+      "get": {
+        "tags": ["18. Notifications Alert Log"],
+        "summary": "Get Notification logs list",
+        "responses": {
+          "200": { "description": "List" }
+        }
+      }
+    },
+    "/notifications/{id}": {
+      "patch": {
+        "tags": ["18. Notifications Alert Log"],
+        "summary": "Mark notification as read",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Read status set" }
+        }
+      },
+      "delete": {
+        "tags": ["18. Notifications Alert Log"],
+        "summary": "Delete Notification log",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Deleted log" }
+        }
+      }
+    },
+    "/support/ticket": {
+      "post": {
+        "tags": ["19. Help & Support Desk"],
+        "summary": "Raise customer support ticket",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "subject": { "type": "string", "example": "Wrong invoice" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Raised" }
+        }
+      }
+    },
+    "/support/tickets": {
+      "get": {
+        "tags": ["19. Help & Support Desk"],
+        "summary": "Get Active support tickets list",
+        "responses": {
+          "200": { "description": "Active tickets list" }
+        }
+      }
+    },
+    "/support/tickets/{id}": {
+      "get": {
+        "tags": ["19. Help & Support Desk"],
+        "summary": "Get Support Ticket Details & Replies",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Details" }
+        }
+      }
+    },
+    "/support/tickets/{id}/reply": {
+      "post": {
+        "tags": ["19. Help & Support Desk"],
+        "summary": "Reply/Add comment to support ticket",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": { "type": "string", "example": "I did not receive reply yet" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Reply added" }
+        }
+      }
+    },
+    "/refund": {
+      "post": {
+        "tags": ["19. Help & Support Desk"],
+        "summary": "Raise Refund Dispute request",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bookingId": { "type": "string", "example": "bk_123" },
+                  "reason": { "type": "string", "example": "Expert did not show up" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Dispute registered" }
+        }
+      }
+    },
+    "/report/expert": {
+      "post": {
+        "tags": ["19. Help & Support Desk"],
+        "summary": "Report Expert partner misconduct",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "providerId": { "type": "string", "example": "prov_rajesh" },
+                  "reason": { "type": "string", "example": "Overcharged cash payment" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Misconduct logged" }
+        }
+      }
+    },
+    "/sos": {
+      "post": {
+        "tags": ["19. Help & Support Desk"],
+        "summary": "Trigger SOS Panic Alert button",
+        "responses": {
+          "200": { "description": "Patrol alerted" }
+        }
+      }
+    },
+    "/referral": {
+      "get": {
+        "tags": ["20. Refer & Earn Payouts"],
+        "summary": "Get Referral details & custom invite codes",
+        "responses": {
+          "200": { "description": "Invite details" }
+        }
+      }
+    },
+    "/referral/history": {
+      "get": {
+        "tags": ["20. Refer & Earn Payouts"],
+        "summary": "Get referred users payout history list",
+        "responses": {
+          "200": { "description": "History" }
+        }
+      }
+    },
+    "/rewards": {
+      "get": {
+        "tags": ["21. Loyalty Rewards"],
+        "summary": "Get Rewards points balance",
+        "responses": {
+          "200": { "description": "Rewards points details" }
+        }
+      }
+    },
+    "/rewards/history": {
+      "get": {
+        "tags": ["21. Loyalty Rewards"],
+        "summary": "Get reward points credit/debit transaction history",
+        "responses": {
+          "200": { "description": "Points history" }
+        }
+      }
+    },
+    "/privacy-policy": {
+      "get": {
+        "tags": ["22. Static policies and terms"],
+        "summary": "Get privacy policy details JSON",
+        "responses": {
+          "200": { "description": "JSON details" }
+        }
+      }
+    },
+    "/terms": {
+      "get": {
+        "tags": ["22. Static policies and terms"],
+        "summary": "Get Terms & Conditions specifications",
+        "responses": {
+          "200": { "description": "JSON details" }
+        }
+      }
+    },
+    "/faq": {
+      "get": {
+        "tags": ["22. Static policies and terms"],
+        "summary": "Get list of FAQs",
+        "responses": {
+          "200": { "description": "List" }
+        }
+      }
+    },
+    "/about": {
+      "get": {
+        "tags": ["22. Static policies and terms"],
+        "summary": "Get About company info",
+        "responses": {
+          "200": { "description": "JSON details" }
+        }
+      }
+    },
+    "/contact": {
+      "get": {
+        "tags": ["22. Static policies and terms"],
+        "summary": "Get support center contact coordinates",
+        "responses": {
+          "200": { "description": "Details" }
+        }
+      }
+    },
+    "/upload/image": {
+      "post": {
+        "tags": ["23. Files & media uploads"],
+        "summary": "Simulate Upload Image",
+        "responses": {
+          "200": { "description": "Return remote asset URL" }
+        }
+      }
+    },
+    "/upload/video": {
+      "post": {
+        "tags": ["23. Files & media uploads"],
+        "summary": "Simulate Upload Video file",
+        "responses": {
+          "200": { "description": "Return remote asset URL" }
+        }
+      }
+    },
+    "/upload/audio": {
+      "post": {
+        "tags": ["23. Files & media uploads"],
+        "summary": "Simulate Upload Voice note audio",
+        "responses": {
+          "200": { "description": "Return remote asset URL" }
+        }
+      }
+    },
+    "/upload/document": {
+      "post": {
+        "tags": ["23. Files & media uploads"],
+        "summary": "Simulate Upload PDF Document",
+        "responses": {
+          "200": { "description": "Return remote asset URL" }
+        }
+      }
+    },
+    "/device/register": {
+      "post": {
+        "tags": ["24. Device sessions & notifications"],
+        "summary": "Register active device session",
+        "responses": {
+          "201": { "description": "Session registered" }
+        }
+      }
+    },
+    "/device/fcm-token": {
+      "post": {
+        "tags": ["24. Device sessions & notifications"],
+        "summary": "Register Firebase Cloud Messaging (FCM) Token",
+        "responses": {
+          "200": { "description": "FCM token updated" }
+        }
+      }
+    },
+    "/sessions": {
+      "get": {
+        "tags": ["24. Device sessions & notifications"],
+        "summary": "Get list of active login sessions",
+        "responses": {
+          "200": { "description": "Sessions list" }
+        }
+      }
+    },
+    "/sessions/{id}": {
+      "delete": {
+        "tags": ["24. Device sessions & notifications"],
+        "summary": "Terminate device session (Remote logout)",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": { "description": "Session terminated" }
+        }
+      }
+    }
+  }
+}

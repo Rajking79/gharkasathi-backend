@@ -1,0 +1,726 @@
+{
+  "info": {
+    "_postman_id": "gharkasathi-full-catalog-2026",
+    "name": "Ghar Ka Sathi Complete 27-Module API Suite",
+    "description": "Production-Ready Postman Collection for Ghar Ka Sathi containing all 27 feature modules with GET, POST, PUT, DELETE, and PATCH HTTP methods.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. App Initialization",
+      "item": [
+        {
+          "name": "1.1 Check Health Status",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/health", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["health"] }
+          }
+        },
+        {
+          "name": "1.2 Check App Version",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/app/version", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "app", "version"] }
+          }
+        },
+        {
+          "name": "1.3 Check Server Maintenance",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/app/maintenance", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "app", "maintenance"] }
+          }
+        },
+        {
+          "name": "1.4 Get Global App Configuration",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/app/config", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "app", "config"] }
+          }
+        },
+        {
+          "name": "1.5 Get Splash & Onboarding Banners",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/app/splash-banners", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "app", "splash-banners"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Authentication (Login/OTP/JWT)",
+      "item": [
+        {
+          "name": "2.1 Send OTP (Customer)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"phone\": \"9876543210\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/send-otp", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "send-otp"] }
+          }
+        },
+        {
+          "name": "2.2 Verify OTP (Customer - Get JWT Token)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"phone\": \"9876543210\",\n  \"otp\": \"123456\",\n  \"role\": \"user\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/verify-otp", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "verify-otp"] }
+          }
+        },
+        {
+          "name": "2.3 Verify OTP (Provider - Get JWT Token)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"phone\": \"9876543210\",\n  \"otp\": \"123456\",\n  \"role\": \"provider\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/verify-otp", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "verify-otp"] }
+          }
+        },
+        {
+          "name": "2.4 Refresh JWT Access Token",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"refreshToken\": \"refresh_demo_token_12345\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/refresh-token", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "refresh-token"] }
+          }
+        },
+        {
+          "name": "2.5 Save Device FCM Push Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"fcmToken\": \"fcm_demo_token_string_123\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/fcm-token", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "fcm-token"] }
+          }
+        },
+        {
+          "name": "2.6 Resend Authentication OTP",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"phone\": \"9876543210\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/resend-otp", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "resend-otp"] }
+          }
+        },
+        {
+          "name": "2.7 Social Login (Google / Apple)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"provider\": \"google\",\n  \"idToken\": \"google_oauth_token_12345\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/social-login", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "social-login"] }
+          }
+        },
+        {
+          "name": "2.8 User Logout",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/logout", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "logout"] }
+          }
+        },
+        {
+          "name": "2.9 Permanently Delete Account",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/account", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "account"] }
+          }
+        },
+        {
+          "name": "2.10 Validate Input 422 Error Rule",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"phone\": \"invalid_phone\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/send-otp", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "send-otp"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Customer Profile",
+      "item": [
+        {
+          "name": "3.1 Get Profile Details",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/customer/profile", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "customer", "profile"] }
+          }
+        },
+        {
+          "name": "3.2 Create / Complete Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@example.com\",\n  \"gender\": \"Male\",\n  \"dob\": \"1990-05-15\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/customer/profile", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "customer", "profile"] }
+          }
+        },
+        {
+          "name": "3.3 Update Profile (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"John Updated\",\n  \"email\": \"johnupdated@example.com\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/customer/profile", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "customer", "profile"] }
+          }
+        },
+        {
+          "name": "3.4 Upload Avatar Photo (Multipart)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "body": {
+              "mode": "formdata",
+              "formdata": [{ "key": "avatar", "type": "file", "src": [] }]
+            },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/customer/profile/avatar", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "customer", "profile", "avatar"] }
+          }
+        },
+        {
+          "name": "3.5 Get Profile Stats",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/customer/stats", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "customer", "stats"] }
+          }
+        },
+        {
+          "name": "3.6 Update Preferred Language",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"language\": \"hi\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/customer/language", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "customer", "language"] }
+          }
+        },
+        {
+          "name": "3.7 Toggle Notification Preferences",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"pushEnabled\": true,\n  \"smsEnabled\": true\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/customer/preferences", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "customer", "preferences"] }
+          }
+        },
+        {
+          "name": "3.8 Delete Profile Photo",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/customer/profile/avatar", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "customer", "profile", "avatar"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Address Management",
+      "item": [
+        {
+          "name": "4.1 Add Saved Address",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"addressLine\": \"Flat 302, Green Valley Apartments\",\n  \"city\": \"Gurugram\",\n  \"state\": \"Haryana\",\n  \"pincode\": \"122001\",\n  \"isDefault\": true\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/address", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "address"] }
+          }
+        },
+        {
+          "name": "4.2 Get Saved Addresses List",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/address", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "address"] }
+          }
+        },
+        {
+          "name": "4.3 Get Address Details by ID",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/address/addr_101", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "address", "addr_101"] }
+          }
+        },
+        {
+          "name": "4.4 Update Saved Address (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"addressLine\": \"Flat 302 Updated, Green Valley\",\n  \"city\": \"Gurugram\",\n  \"state\": \"Haryana\",\n  \"pincode\": \"122001\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/address/addr_101", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "address", "addr_101"] }
+          }
+        },
+        {
+          "name": "4.5 Set Address as Default (PATCH)",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/address/addr_101/default", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "address", "addr_101", "default"] }
+          }
+        },
+        {
+          "name": "4.6 Delete Saved Address (DELETE)",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/address/addr_101", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "address", "addr_101"] }
+          }
+        },
+        {
+          "name": "4.7 Reverse Geocode Coordinates to Address",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/address/geocode?lat=28.4595&lng=77.0266", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "address", "geocode"], "query": [{ "key": "lat", "value": "28.4595" }, { "key": "lng", "value": "77.0266" }] }
+          }
+        },
+        {
+          "name": "4.8 Validate Service Availability at Pincode",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/address/serviceable?pincode=122001", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "address", "serviceable"], "query": [{ "key": "pincode", "value": "122001" }] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Home Dashboard",
+      "item": [
+        {
+          "name": "5.1 Get Home Dashboard Feed",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/home", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home"] }
+          }
+        },
+        {
+          "name": "5.2 Get Promotional Banners Carousel",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/home/banners", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home", "banners"] }
+          }
+        },
+        {
+          "name": "5.3 Get Featured Most Booked Services",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/home/featured", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home", "featured"] }
+          }
+        },
+        {
+          "name": "5.4 Get Special Offers & Deals",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/home/offers", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home", "offers"] }
+          }
+        },
+        {
+          "name": "5.5 Get Active Booking Tracker Banner",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/home/active-booking", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home", "active-booking"] }
+          }
+        },
+        {
+          "name": "5.6 Get Nearby Available Experts Count",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/home/nearby-experts?lat=28.4595&lng=77.0266", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home", "nearby-experts"], "query": [{ "key": "lat", "value": "28.4595" }, { "key": "lng", "value": "77.0266" }] }
+          }
+        },
+        {
+          "name": "5.7 Get Quick Categories Grid",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/home/quick-categories", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home", "quick-categories"] }
+          }
+        },
+        {
+          "name": "5.8 Get Customer Greeting & Unread Count",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/home/greeting", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home", "greeting"] }
+          }
+        },
+        {
+          "name": "5.9 Get Seasonal Trending Services",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/home/trending", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home", "trending"] }
+          }
+        },
+        {
+          "name": "5.10 Get Customer Wallet & Credit Summary",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/home/wallet-summary", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home", "wallet-summary"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Categories & Services",
+      "item": [
+        {
+          "name": "6.1 Get All Categories",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/categories", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "categories"] }
+          }
+        },
+        {
+          "name": "6.2 Get Category Details by ID",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/categories/cat_plumber", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "categories", "cat_plumber"] }
+          }
+        },
+        {
+          "name": "6.3 Search Services by Keyword",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/categories/search/services?query=tap", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "categories", "search", "services"], "query": [{ "key": "query", "value": "tap" }] }
+          }
+        },
+        {
+          "name": "6.4 Get Sub-Services List",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/categories/cat_plumber/sub-services", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "categories", "cat_plumber", "sub-services"] }
+          }
+        },
+        {
+          "name": "6.5 Calculate Service Price Quote",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"subServiceId\": \"sub_pl_leak\",\n  \"quantity\": 2,\n  \"coupon\": \"SGSAVE30\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/categories/quote", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "categories", "quote"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "7. Coupons & Discounts",
+      "item": [
+        {
+          "name": "7.1 Get Available Coupons List",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/coupon", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "coupon"] }
+          }
+        },
+        {
+          "name": "7.2 Validate Coupon Code",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"code\": \"SGSAVE30\",\n  \"amount\": 399\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/coupon/validate", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "coupon", "validate"] }
+          }
+        },
+        {
+          "name": "7.3 Get Coupon Details by Code",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/coupon/SGSAVE30", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "coupon", "SGSAVE30"] }
+          }
+        },
+        {
+          "name": "7.4 Apply Coupon to Booking Draft",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"couponCode\": \"SAVE50\",\n  \"basePrice\": 249\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/coupon/apply", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "coupon", "apply"] }
+          }
+        },
+        {
+          "name": "7.5 Get User Reward Coupons",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/coupon/my-rewards", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "coupon", "my-rewards"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "8. Bookings & Lifecycle",
+      "item": [
+        {
+          "name": "8.1 Create New Booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"categoryId\": \"cat_plumber\",\n  \"subServiceId\": \"sub_pl_leak\",\n  \"dateTime\": \"2026-07-20T10:00:00Z\",\n  \"timeSlot\": \"10:00 AM - 12:00 PM\",\n  \"address\": \"H.No 124, Sector 15, Gurugram\",\n  \"coupon\": \"SGSAVE30\",\n  \"paymentMethod\": \"UPI\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings"] }
+          }
+        },
+        {
+          "name": "8.2 Get Customer Bookings List (Paginated)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings?page=1&limit=10", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings"], "query": [{ "key": "page", "value": "1" }, { "key": "limit", "value": "10" }] }
+          }
+        },
+        {
+          "name": "8.3 Get Booking Details by ID",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings/bk_1784387265906", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings", "bk_1784387265906"] }
+          }
+        },
+        {
+          "name": "8.4 Cancel Booking (PATCH)",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings/bk_1784387265906/cancel", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings", "bk_1784387265906", "cancel"] }
+          }
+        },
+        {
+          "name": "8.5 Reschedule Booking (PATCH)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"dateTime\": \"2026-07-21T14:00:00Z\",\n  \"timeSlot\": \"02:00 PM - 04:00 PM\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings/bk_1784387265906/reschedule", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings", "bk_1784387265906", "reschedule"] }
+          }
+        },
+        {
+          "name": "8.6 Verify Job Arrival Security OTP (Expert)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{provider_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"otp\": \"5402\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings/bk_1784387265906/verify-otp", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings", "bk_1784387265906", "verify-otp"] }
+          }
+        },
+        {
+          "name": "8.7 Request Additional Work (Expert)",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{provider_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"cost\": 150,\n  \"reason\": \"Extra pipe fitting labor and materials\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings/bk_1784387265906/extra-work", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings", "bk_1784387265906", "extra-work"] }
+          }
+        },
+        {
+          "name": "8.8 Approve Additional Work (Customer)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings/bk_1784387265906/approve-extra", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings", "bk_1784387265906", "approve-extra"] }
+          }
+        },
+        {
+          "name": "8.9 Mark Job Completed (Expert)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{provider_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings/bk_1784387265906/complete", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings", "bk_1784387265906", "complete"] }
+          }
+        },
+        {
+          "name": "8.10 Get Booking Invoice Details",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings/bk_1784387265906/invoice", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings", "bk_1784387265906", "invoice"] }
+          }
+        },
+        {
+          "name": "8.11 Pay & Settle Platform Commission",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings/bk_1784387265906/pay", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings", "bk_1784387265906", "pay"] }
+          }
+        },
+        {
+          "name": "8.12 Submit Rating & Review",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"bookingId\": \"bk_1784387265906\",\n  \"stars\": 5,\n  \"comment\": \"Excellent service by expert!\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/review", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "review"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "9. Wallet & Earnings",
+      "item": [
+        {
+          "name": "9.1 Get Wallet Balance & Ledger",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{provider_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/wallet/balance", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "wallet", "balance"] }
+          }
+        },
+        {
+          "name": "9.2 Request Payout Withdrawal",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{provider_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"amount\": 500,\n  \"upiId\": \"rajesh@upi\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/wallet/payout", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "wallet", "payout"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "10. Notifications & Alerts",
+      "item": [
+        {
+          "name": "10.1 Get User Notifications List",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/notifications", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "notifications"] }
+          }
+        },
+        {
+          "name": "10.2 Mark Notification Read (PATCH)",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/notifications/notif_101/read", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "notifications", "notif_101", "read"] }
+          }
+        },
+        {
+          "name": "10.3 Delete Notification (DELETE)",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/notifications/notif_101", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "notifications", "notif_101"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "11. File Upload (Multipart)",
+      "item": [
+        {
+          "name": "11.1 Upload Image File",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "body": {
+              "mode": "formdata",
+              "formdata": [{ "key": "file", "type": "file", "src": [] }]
+            },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/upload/image", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "upload", "image"] }
+          }
+        },
+        {
+          "name": "11.2 Upload Voice Note Audio File",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "body": {
+              "mode": "formdata",
+              "formdata": [{ "key": "file", "type": "file", "src": [] }]
+            },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/upload/audio", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "upload", "audio"] }
+          }
+        },
+        {
+          "name": "11.3 Upload Document PDF File",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "body": {
+              "mode": "formdata",
+              "formdata": [{ "key": "file", "type": "file", "src": [] }]
+            },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/upload/document", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "upload", "document"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "12. Support & SOS Safety",
+      "item": [
+        {
+          "name": "12.1 Create Support Ticket",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"subject\": \"Delay in expert arrival\",\n  \"message\": \"Expert has not arrived yet for booking bk_1784387265906\"\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/support/tickets", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "support", "tickets"] }
+          }
+        },
+        {
+          "name": "12.2 Trigger Emergency SOS Safety Alert",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"latitude\": 28.4595,\n  \"longitude\": 77.0266\n}" },
+            "url": { "raw": "http://127.0.0.1:8080/api/v1/support/sos", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "support", "sos"] }
+          }
+        }
+      ]
+    }
+  ]
+}
