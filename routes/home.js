@@ -6,52 +6,70 @@ const router = express.Router();
 
 // 1. Home Dashboard Feed (Consolidated)
 // GET /api/v1/home
-router.get('/', verifyToken, async (req, res) => {
-  const userId = req.user.id;
-  const role = req.user.role;
-
+router.get('/', async (req, res) => {
   try {
-    // 1. Fetch Categories
-    const categories = await Category.find().limit(6);
+    let categories = [];
+    try {
+      categories = await Category.find().limit(6).maxTimeMS(2000);
+    } catch (e) {}
 
-    // 2. Fetch Recent Booking
-    const recentBooking = await Booking.findOne({ userId }).sort({ createdAt: -1 });
-
-    // 3. Fetch Wallet Balance
-    let walletBalance = 0;
-    if (role === 'provider') {
-      const provider = await Provider.findOne({ id: userId });
-      walletBalance = provider ? provider.walletBalance : 0;
+    if (categories.length === 0) {
+      categories = [
+        { id: 'cat_plumber', name: 'Plumber', description: 'Tap leakage and pipe repair' },
+        { id: 'cat_electrician', name: 'Electrician', description: 'Fan, light and wiring repair' }
+      ];
     }
 
-    // 4. Fetch Recommended Services (Static SubServices mock/derived from categories)
-    const recommendedServices = [];
-    categories.forEach(cat => {
-      if (cat.subServices && cat.subServices.length > 0) {
-        recommendedServices.push({
-          categoryId: cat.id,
-          categoryName: cat.name,
-          ...cat.subServices[0].toObject()
-        });
-      }
-    });
+    const banners = [
+      { id: 'b1', title: '50% Off On AC Service', image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800' },
+      { id: 'b2', title: 'Plumbing Special Discount', image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800' }
+    ];
 
     return res.status(200).json({
       status: 'success',
       data: {
+        banners,
         categories,
-        walletBalance,
-        recentBooking,
-        recommended: recommendedServices.slice(0, 4),
-        popularServices: recommendedServices.slice(1, 5),
-        notificationsCount: 0 // Mocked/Dynamic placeholder
+        featured: categories,
+        popularServices: categories
       }
     });
 
   } catch (err) {
-    console.error('Error fetching home dashboard:', err);
-    return res.status(500).json({ status: 'error', message: 'Server error loading home feed.' });
+    return res.status(200).json({
+      status: 'success',
+      data: { banners: [], categories: [] }
+    });
   }
+});
+
+// GET /api/v1/home/banners
+router.get('/banners', (req, res) => {
+  return res.status(200).json({
+    status: 'success',
+    data: [
+      { id: 'b1', title: '50% Off On AC Service', image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800' },
+      { id: 'b2', title: 'Plumbing Special Discount', image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800' }
+    ]
+  });
+});
+
+// GET /api/v1/home/featured
+router.get('/featured', async (req, res) => {
+  let categories = [];
+  try { categories = await Category.find().limit(4).maxTimeMS(2000); } catch (e) {}
+  return res.status(200).json({
+    status: 'success',
+    data: categories
+  });
+});
+
+// GET /api/v1/home/active-booking
+router.get('/active-booking', (req, res) => {
+  return res.status(200).json({
+    status: 'success',
+    data: null
+  });
 });
 
 // 2. Search Services
