@@ -1,8 +1,8 @@
 {
   "info": {
-    "_postman_id": "gharkasathi-production-live-2026-v3",
+    "_postman_id": "gharkasathi-clean-flat-2026",
     "name": "Ghar Ka Sathi Production APIs",
-    "description": "Complete 75+ API Suite for Ghar Ka Sathi pointing to Live Render Production URL via {{baseUrl}} variable.",
+    "description": "Clean, flat 1-level Postman Collection for Ghar Ka Sathi matching Account Master API structure.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
@@ -24,203 +24,157 @@
   ],
   "item": [
     {
-      "name": "app",
+      "name": "App Initialization",
       "item": [
         {
-          "name": "version",
-          "item": [
-            {
-              "name": "Check App Version",
-              "request": {
-                "method": "GET",
-                "url": { "raw": "{{baseUrl}}/app/version", "host": ["{{baseUrl}}"], "path": ["app", "version"] }
-              }
-            }
-          ]
+          "name": "Check Health Status",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/health", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["health"] }
+          }
         },
         {
-          "name": "maintenance",
-          "item": [
-            {
-              "name": "Maintenance Check",
-              "request": {
-                "method": "GET",
-                "url": { "raw": "{{baseUrl}}/app/maintenance", "host": ["{{baseUrl}}"], "path": ["app", "maintenance"] }
-              }
-            }
-          ]
+          "name": "Check App Version",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/app/version", "host": ["{{baseUrl}}"], "path": ["app", "version"] }
+          }
         },
         {
-          "name": "config",
-          "item": [
-            {
-              "name": "App Configuration parameters",
-              "request": {
-                "method": "GET",
-                "url": { "raw": "{{baseUrl}}/app/config", "host": ["{{baseUrl}}"], "path": ["app", "config"] }
-              }
-            }
-          ]
+          "name": "Check Maintenance Mode",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/app/maintenance", "host": ["{{baseUrl}}"], "path": ["app", "maintenance"] }
+          }
+        },
+        {
+          "name": "Get App Config Parameters",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{baseUrl}}/app/config", "host": ["{{baseUrl}}"], "path": ["app", "config"] }
+          }
         }
       ]
     },
     {
-      "name": "auth",
+      "name": "Auth",
       "item": [
         {
-          "name": "send-otp",
-          "item": [
-            {
-              "name": "Send OTP SMS",
-              "request": {
-                "method": "POST",
-                "header": [{ "key": "Content-Type", "value": "application/json" }],
-                "body": { "mode": "raw", "raw": "{\n  \"phone\": \"9876543210\"\n}" },
-                "url": { "raw": "{{baseUrl}}/auth/send-otp", "host": ["{{baseUrl}}"], "path": ["auth", "send-otp"] }
-              }
-            }
-          ]
+          "name": "Send OTP (Customer)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"phone\": \"9876543210\"\n}" },
+            "url": { "raw": "{{baseUrl}}/auth/send-otp", "host": ["{{baseUrl}}"], "path": ["auth", "send-otp"] }
+          }
         },
         {
-          "name": "verify-otp",
-          "item": [
-            {
-              "name": "Verify OTP & Generate JWT",
-              "request": {
-                "method": "POST",
-                "header": [{ "key": "Content-Type", "value": "application/json" }],
-                "body": { "mode": "raw", "raw": "{\n  \"phone\": \"9876543210\",\n  \"otp\": \"123456\",\n  \"role\": \"user\"\n}" },
-                "url": { "raw": "{{baseUrl}}/auth/verify-otp", "host": ["{{baseUrl}}"], "path": ["auth", "verify-otp"] }
-              }
-            }
-          ]
+          "name": "Verify OTP (Customer - Get JWT)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"phone\": \"9876543210\",\n  \"otp\": \"123456\",\n  \"role\": \"user\"\n}" },
+            "url": { "raw": "{{baseUrl}}/auth/verify-otp", "host": ["{{baseUrl}}"], "path": ["auth", "verify-otp"] }
+          }
         },
         {
-          "name": "refresh",
-          "item": [
-            {
-              "name": "Refresh Access Token",
-              "request": {
-                "method": "POST",
-                "header": [{ "key": "Content-Type", "value": "application/json" }],
-                "body": { "mode": "raw", "raw": "{\n  \"refreshToken\": \"refresh_demo_123\"\n}" },
-                "url": { "raw": "{{baseUrl}}/auth/refresh-token", "host": ["{{baseUrl}}"], "path": ["auth", "refresh-token"] }
-              }
-            }
-          ]
+          "name": "Verify OTP (Provider - Get JWT)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"phone\": \"9876543210\",\n  \"otp\": \"123456\",\n  \"role\": \"provider\"\n}" },
+            "url": { "raw": "{{baseUrl}}/auth/verify-otp", "host": ["{{baseUrl}}"], "path": ["auth", "verify-otp"] }
+          }
         },
         {
-          "name": "logout",
-          "item": [
-            {
-              "name": "Logout from session",
-              "request": {
-                "method": "POST",
-                "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-                "url": { "raw": "{{baseUrl}}/auth/logout", "host": ["{{baseUrl}}"], "path": ["auth", "logout"] }
-              }
-            }
-          ]
+          "name": "Refresh Access Token",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"refreshToken\": \"refresh_demo_123\"\n}" },
+            "url": { "raw": "{{baseUrl}}/auth/refresh-token", "host": ["{{baseUrl}}"], "path": ["auth", "refresh-token"] }
+          }
         },
         {
-          "name": "account",
-          "item": [
-            {
-              "name": "Delete Account Permanently",
-              "request": {
-                "method": "DELETE",
-                "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-                "url": { "raw": "{{baseUrl}}/auth/account", "host": ["{{baseUrl}}"], "path": ["auth", "account"] }
-              }
-            }
-          ]
+          "name": "User Logout",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "{{baseUrl}}/auth/logout", "host": ["{{baseUrl}}"], "path": ["auth", "logout"] }
+          }
+        },
+        {
+          "name": "Delete Account Permanently",
+          "request": {
+            "method": "DELETE",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "{{baseUrl}}/auth/account", "host": ["{{baseUrl}}"], "path": ["auth", "account"] }
+          }
         }
       ]
     },
     {
-      "name": "customer",
+      "name": "Customer Profile & Addresses",
       "item": [
         {
-          "name": "profile",
-          "item": [
-            {
-              "name": "Get Profile details",
-              "request": {
-                "method": "GET",
-                "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-                "url": { "raw": "{{baseUrl}}/customer/profile", "host": ["{{baseUrl}}"], "path": ["customer", "profile"] }
-              }
-            },
-            {
-              "name": "Create Profile details",
-              "request": {
-                "method": "POST",
-                "header": [
-                  { "key": "Content-Type", "value": "application/json" },
-                  { "key": "Authorization", "value": "Bearer {{user_token}}" }
-                ],
-                "body": { "mode": "raw", "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"gender\": \"Male\",\n  \"dob\": \"1992-05-15\"\n}" },
-                "url": { "raw": "{{baseUrl}}/customer/profile", "host": ["{{baseUrl}}"], "path": ["customer", "profile"] }
-              }
-            },
-            {
-              "name": "Update Profile details",
-              "request": {
-                "method": "PUT",
-                "header": [
-                  { "key": "Content-Type", "value": "application/json" },
-                  { "key": "Authorization", "value": "Bearer {{user_token}}" }
-                ],
-                "body": { "mode": "raw", "raw": "{\n  \"name\": \"John Updated\"\n}" },
-                "url": { "raw": "{{baseUrl}}/customer/profile", "host": ["{{baseUrl}}"], "path": ["customer", "profile"] }
-              }
-            },
-            {
-              "name": "Upload Profile Avatar Image",
-              "request": {
-                "method": "POST",
-                "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-                "body": {
-                  "mode": "formdata",
-                  "formdata": [{ "key": "avatar", "type": "file", "src": [] }]
-                },
-                "url": { "raw": "{{baseUrl}}/customer/profile/avatar", "host": ["{{baseUrl}}"], "path": ["customer", "profile", "avatar"] }
-              }
-            }
-          ]
+          "name": "Get Customer Profile",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "{{baseUrl}}/customer/profile", "host": ["{{baseUrl}}"], "path": ["customer", "profile"] }
+          }
         },
         {
-          "name": "address",
-          "item": [
-            {
-              "name": "Get All Address Book",
-              "request": {
-                "method": "GET",
-                "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-                "url": { "raw": "{{baseUrl}}/address", "host": ["{{baseUrl}}"], "path": ["address"] }
-              }
+          "name": "Create / Update Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"gender\": \"Male\",\n  \"dob\": \"1992-05-15\"\n}" },
+            "url": { "raw": "{{baseUrl}}/customer/profile", "host": ["{{baseUrl}}"], "path": ["customer", "profile"] }
+          }
+        },
+        {
+          "name": "Upload Profile Avatar Image",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "body": {
+              "mode": "formdata",
+              "formdata": [{ "key": "avatar", "type": "file", "src": [] }]
             },
-            {
-              "name": "Add Address to Book",
-              "request": {
-                "method": "POST",
-                "header": [
-                  { "key": "Content-Type", "value": "application/json" },
-                  { "key": "Authorization", "value": "Bearer {{user_token}}" }
-                ],
-                "body": { "mode": "raw", "raw": "{\n  \"addressLine\": \"Flat 302, Sector 15\",\n  \"city\": \"Gurugram\",\n  \"state\": \"Haryana\",\n  \"pincode\": \"122001\",\n  \"isDefault\": true\n}" },
-                "url": { "raw": "{{baseUrl}}/address", "host": ["{{baseUrl}}"], "path": ["address"] }
-              }
-            }
-          ]
+            "url": { "raw": "{{baseUrl}}/customer/profile/avatar", "host": ["{{baseUrl}}"], "path": ["customer", "profile", "avatar"] }
+          }
+        },
+        {
+          "name": "Get Address Book",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "{{baseUrl}}/address", "host": ["{{baseUrl}}"], "path": ["address"] }
+          }
+        },
+        {
+          "name": "Add Address to Book",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"addressLine\": \"Flat 302, Sector 15\",\n  \"city\": \"Gurugram\",\n  \"state\": \"Haryana\",\n  \"pincode\": \"122001\",\n  \"isDefault\": true\n}" },
+            "url": { "raw": "{{baseUrl}}/address", "host": ["{{baseUrl}}"], "path": ["address"] }
+          }
         }
       ]
     },
     {
-      "name": "home",
+      "name": "Dashboard",
       "item": [
         {
-          "name": "Get Home Dashboard Consolidated feed",
+          "name": "Get Home Dashboard Feed",
           "request": {
             "method": "GET",
             "url": { "raw": "{{baseUrl}}/home", "host": ["{{baseUrl}}"], "path": ["home"] }
@@ -243,7 +197,7 @@
       ]
     },
     {
-      "name": "categories",
+      "name": "Categories & Services",
       "item": [
         {
           "name": "Get Category List",
@@ -269,17 +223,17 @@
       ]
     },
     {
-      "name": "coupon",
+      "name": "Coupons",
       "item": [
         {
-          "name": "Get Available Coupons list",
+          "name": "Get Available Coupons",
           "request": {
             "method": "GET",
             "url": { "raw": "{{baseUrl}}/coupon", "host": ["{{baseUrl}}"], "path": ["coupon"] }
           }
         },
         {
-          "name": "Validate Promo Coupon code",
+          "name": "Validate Promo Coupon",
           "request": {
             "method": "POST",
             "header": [
@@ -293,7 +247,7 @@
       ]
     },
     {
-      "name": "bookings",
+      "name": "Bookings",
       "item": [
         {
           "name": "Create New Booking",
@@ -308,7 +262,7 @@
           }
         },
         {
-          "name": "Get Customer Bookings List",
+          "name": "Get Bookings History",
           "request": {
             "method": "GET",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
@@ -316,7 +270,7 @@
           }
         },
         {
-          "name": "Cancel booking request",
+          "name": "Cancel Booking Request",
           "request": {
             "method": "PATCH",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
@@ -324,7 +278,7 @@
           }
         },
         {
-          "name": "Reschedule booking time slot",
+          "name": "Reschedule Time Slot",
           "request": {
             "method": "PATCH",
             "header": [
@@ -336,7 +290,7 @@
           }
         },
         {
-          "name": "Verify OTP code to Start Service",
+          "name": "Verify Arrival OTP Code",
           "request": {
             "method": "POST",
             "header": [
@@ -382,14 +336,26 @@
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
             "url": { "raw": "{{baseUrl}}/bookings/bk_1784387265906/pay", "host": ["{{baseUrl}}"], "path": ["bookings", "bk_1784387265906", "pay"] }
           }
+        },
+        {
+          "name": "Submit Rating Feedback",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"bookingId\": \"bk_1784387265906\",\n  \"stars\": 5,\n  \"comment\": \"Great service!\"\n}" },
+            "url": { "raw": "{{baseUrl}}/review", "host": ["{{baseUrl}}"], "path": ["review"] }
+          }
         }
       ]
     },
     {
-      "name": "wallet",
+      "name": "Wallet",
       "item": [
         {
-          "name": "Get Wallet Balance & Transactions",
+          "name": "Get Wallet Balance & History",
           "request": {
             "method": "GET",
             "header": [{ "key": "Authorization", "value": "Bearer {{provider_token}}" }],
@@ -406,6 +372,43 @@
             ],
             "body": { "mode": "raw", "raw": "{\n  \"amount\": 500,\n  \"upiId\": \"rajesh@upi\"\n}" },
             "url": { "raw": "{{baseUrl}}/wallet/payout", "host": ["{{baseUrl}}"], "path": ["wallet", "payout"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Support & Notifications",
+      "item": [
+        {
+          "name": "Get User Notifications",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
+            "url": { "raw": "{{baseUrl}}/notifications", "host": ["{{baseUrl}}"], "path": ["notifications"] }
+          }
+        },
+        {
+          "name": "Create Support Ticket",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"subject\": \"Delay in expert arrival\",\n  \"message\": \"Expert has not arrived yet.\"\n}" },
+            "url": { "raw": "{{baseUrl}}/support/tickets", "host": ["{{baseUrl}}"], "path": ["support", "tickets"] }
+          }
+        },
+        {
+          "name": "Trigger SOS Panic Alert",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{user_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"latitude\": 28.4595,\n  \"longitude\": 77.0266\n}" },
+            "url": { "raw": "{{baseUrl}}/support/sos", "host": ["{{baseUrl}}"], "path": ["support", "sos"] }
           }
         }
       ]
