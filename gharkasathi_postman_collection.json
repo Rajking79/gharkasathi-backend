@@ -1,8 +1,8 @@
 {
   "info": {
-    "_postman_id": "gharkasathi-full-catalog-2026",
-    "name": "Ghar Ka Sathi Complete 27-Module API Suite",
-    "description": "Production-Ready Postman Collection for Ghar Ka Sathi containing all 27 feature modules with GET, POST, PUT, DELETE, and PATCH HTTP methods.",
+    "_postman_id": "gharkasathi-production-live-2026",
+    "name": "Ghar Ka Sathi Live Production APIs (Render)",
+    "description": "Live Postman Collection for Ghar Ka Sathi pointing to https://gharkasathi-backend-neuj.onrender.com across all 27 feature modules.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -13,35 +13,35 @@
           "name": "1.1 Check Health Status",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/health", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["health"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/health", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["health"] }
           }
         },
         {
           "name": "1.2 Check App Version",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/app/version", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "app", "version"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/app/version", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "app", "version"] }
           }
         },
         {
           "name": "1.3 Check Server Maintenance",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/app/maintenance", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "app", "maintenance"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/app/maintenance", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "app", "maintenance"] }
           }
         },
         {
           "name": "1.4 Get Global App Configuration",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/app/config", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "app", "config"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/app/config", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "app", "config"] }
           }
         },
         {
           "name": "1.5 Get Splash & Onboarding Banners",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/app/splash-banners", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "app", "splash-banners"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/app/splash-banners", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "app", "splash-banners"] }
           }
         }
       ]
@@ -55,7 +55,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": { "mode": "raw", "raw": "{\n  \"phone\": \"9876543210\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/send-otp", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "send-otp"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/auth/send-otp", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "auth", "send-otp"] }
           }
         },
         {
@@ -64,7 +64,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": { "mode": "raw", "raw": "{\n  \"phone\": \"9876543210\",\n  \"otp\": \"123456\",\n  \"role\": \"user\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/verify-otp", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "verify-otp"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/auth/verify-otp", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "auth", "verify-otp"] }
           }
         },
         {
@@ -73,7 +73,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": { "mode": "raw", "raw": "{\n  \"phone\": \"9876543210\",\n  \"otp\": \"123456\",\n  \"role\": \"provider\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/verify-otp", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "verify-otp"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/auth/verify-otp", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "auth", "verify-otp"] }
           }
         },
         {
@@ -82,7 +82,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": { "mode": "raw", "raw": "{\n  \"refreshToken\": \"refresh_demo_token_12345\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/refresh-token", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "refresh-token"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/auth/refresh-token", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "auth", "refresh-token"] }
           }
         },
         {
@@ -94,7 +94,7 @@
               { "key": "Authorization", "value": "Bearer {{user_token}}" }
             ],
             "body": { "mode": "raw", "raw": "{\n  \"fcmToken\": \"fcm_demo_token_string_123\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/fcm-token", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "fcm-token"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/auth/fcm-token", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "auth", "fcm-token"] }
           }
         },
         {
@@ -103,7 +103,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": { "mode": "raw", "raw": "{\n  \"phone\": \"9876543210\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/resend-otp", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "resend-otp"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/auth/resend-otp", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "auth", "resend-otp"] }
           }
         },
         {
@@ -112,7 +112,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": { "mode": "raw", "raw": "{\n  \"provider\": \"google\",\n  \"idToken\": \"google_oauth_token_12345\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/social-login", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "social-login"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/auth/social-login", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "auth", "social-login"] }
           }
         },
         {
@@ -120,7 +120,7 @@
           "request": {
             "method": "POST",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/logout", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "logout"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/auth/logout", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "auth", "logout"] }
           }
         },
         {
@@ -128,7 +128,7 @@
           "request": {
             "method": "DELETE",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/account", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "account"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/auth/account", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "auth", "account"] }
           }
         },
         {
@@ -137,7 +137,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": { "mode": "raw", "raw": "{\n  \"phone\": \"invalid_phone\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/auth/send-otp", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "auth", "send-otp"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/auth/send-otp", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "auth", "send-otp"] }
           }
         }
       ]
@@ -150,7 +150,7 @@
           "request": {
             "method": "GET",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/customer/profile", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "customer", "profile"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/customer/profile", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "customer", "profile"] }
           }
         },
         {
@@ -162,7 +162,7 @@
               { "key": "Authorization", "value": "Bearer {{user_token}}" }
             ],
             "body": { "mode": "raw", "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@example.com\",\n  \"gender\": \"Male\",\n  \"dob\": \"1990-05-15\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/customer/profile", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "customer", "profile"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/customer/profile", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "customer", "profile"] }
           }
         },
         {
@@ -174,7 +174,7 @@
               { "key": "Authorization", "value": "Bearer {{user_token}}" }
             ],
             "body": { "mode": "raw", "raw": "{\n  \"name\": \"John Updated\",\n  \"email\": \"johnupdated@example.com\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/customer/profile", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "customer", "profile"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/customer/profile", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "customer", "profile"] }
           }
         },
         {
@@ -186,7 +186,7 @@
               "mode": "formdata",
               "formdata": [{ "key": "avatar", "type": "file", "src": [] }]
             },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/customer/profile/avatar", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "customer", "profile", "avatar"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/customer/profile/avatar", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "customer", "profile", "avatar"] }
           }
         },
         {
@@ -194,7 +194,7 @@
           "request": {
             "method": "GET",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/customer/stats", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "customer", "stats"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/customer/stats", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "customer", "stats"] }
           }
         },
         {
@@ -206,7 +206,7 @@
               { "key": "Authorization", "value": "Bearer {{user_token}}" }
             ],
             "body": { "mode": "raw", "raw": "{\n  \"language\": \"hi\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/customer/language", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "customer", "language"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/customer/language", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "customer", "language"] }
           }
         },
         {
@@ -218,7 +218,7 @@
               { "key": "Authorization", "value": "Bearer {{user_token}}" }
             ],
             "body": { "mode": "raw", "raw": "{\n  \"pushEnabled\": true,\n  \"smsEnabled\": true\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/customer/preferences", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "customer", "preferences"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/customer/preferences", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "customer", "preferences"] }
           }
         },
         {
@@ -226,7 +226,7 @@
           "request": {
             "method": "DELETE",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/customer/profile/avatar", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "customer", "profile", "avatar"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/customer/profile/avatar", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "customer", "profile", "avatar"] }
           }
         }
       ]
@@ -243,7 +243,7 @@
               { "key": "Authorization", "value": "Bearer {{user_token}}" }
             ],
             "body": { "mode": "raw", "raw": "{\n  \"addressLine\": \"Flat 302, Green Valley Apartments\",\n  \"city\": \"Gurugram\",\n  \"state\": \"Haryana\",\n  \"pincode\": \"122001\",\n  \"isDefault\": true\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/address", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "address"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/address", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "address"] }
           }
         },
         {
@@ -251,7 +251,7 @@
           "request": {
             "method": "GET",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/address", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "address"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/address", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "address"] }
           }
         },
         {
@@ -259,7 +259,7 @@
           "request": {
             "method": "GET",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/address/addr_101", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "address", "addr_101"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/address/addr_101", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "address", "addr_101"] }
           }
         },
         {
@@ -271,7 +271,7 @@
               { "key": "Authorization", "value": "Bearer {{user_token}}" }
             ],
             "body": { "mode": "raw", "raw": "{\n  \"addressLine\": \"Flat 302 Updated, Green Valley\",\n  \"city\": \"Gurugram\",\n  \"state\": \"Haryana\",\n  \"pincode\": \"122001\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/address/addr_101", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "address", "addr_101"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/address/addr_101", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "address", "addr_101"] }
           }
         },
         {
@@ -279,7 +279,7 @@
           "request": {
             "method": "PATCH",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/address/addr_101/default", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "address", "addr_101", "default"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/address/addr_101/default", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "address", "addr_101", "default"] }
           }
         },
         {
@@ -287,21 +287,21 @@
           "request": {
             "method": "DELETE",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/address/addr_101", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "address", "addr_101"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/address/addr_101", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "address", "addr_101"] }
           }
         },
         {
           "name": "4.7 Reverse Geocode Coordinates to Address",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/address/geocode?lat=28.4595&lng=77.0266", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "address", "geocode"], "query": [{ "key": "lat", "value": "28.4595" }, { "key": "lng", "value": "77.0266" }] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/address/geocode?lat=28.4595&lng=77.0266", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "address", "geocode"], "query": [{ "key": "lat", "value": "28.4595" }, { "key": "lng", "value": "77.0266" }] }
           }
         },
         {
           "name": "4.8 Validate Service Availability at Pincode",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/address/serviceable?pincode=122001", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "address", "serviceable"], "query": [{ "key": "pincode", "value": "122001" }] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/address/serviceable?pincode=122001", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "address", "serviceable"], "query": [{ "key": "pincode", "value": "122001" }] }
           }
         }
       ]
@@ -313,28 +313,28 @@
           "name": "5.1 Get Home Dashboard Feed",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/home", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/home", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "home"] }
           }
         },
         {
           "name": "5.2 Get Promotional Banners Carousel",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/home/banners", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home", "banners"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/home/banners", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "home", "banners"] }
           }
         },
         {
           "name": "5.3 Get Featured Most Booked Services",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/home/featured", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home", "featured"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/home/featured", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "home", "featured"] }
           }
         },
         {
           "name": "5.4 Get Special Offers & Deals",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/home/offers", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home", "offers"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/home/offers", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "home", "offers"] }
           }
         },
         {
@@ -342,21 +342,21 @@
           "request": {
             "method": "GET",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/home/active-booking", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home", "active-booking"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/home/active-booking", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "home", "active-booking"] }
           }
         },
         {
           "name": "5.6 Get Nearby Available Experts Count",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/home/nearby-experts?lat=28.4595&lng=77.0266", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home", "nearby-experts"], "query": [{ "key": "lat", "value": "28.4595" }, { "key": "lng", "value": "77.0266" }] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/home/nearby-experts?lat=28.4595&lng=77.0266", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "home", "nearby-experts"], "query": [{ "key": "lat", "value": "28.4595" }, { "key": "lng", "value": "77.0266" }] }
           }
         },
         {
           "name": "5.7 Get Quick Categories Grid",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/home/quick-categories", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home", "quick-categories"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/home/quick-categories", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "home", "quick-categories"] }
           }
         },
         {
@@ -364,14 +364,14 @@
           "request": {
             "method": "GET",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/home/greeting", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home", "greeting"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/home/greeting", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "home", "greeting"] }
           }
         },
         {
           "name": "5.9 Get Seasonal Trending Services",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/home/trending", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home", "trending"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/home/trending", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "home", "trending"] }
           }
         },
         {
@@ -379,7 +379,7 @@
           "request": {
             "method": "GET",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/home/wallet-summary", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "home", "wallet-summary"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/home/wallet-summary", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "home", "wallet-summary"] }
           }
         }
       ]
@@ -391,28 +391,28 @@
           "name": "6.1 Get All Categories",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/categories", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "categories"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/categories", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "categories"] }
           }
         },
         {
           "name": "6.2 Get Category Details by ID",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/categories/cat_plumber", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "categories", "cat_plumber"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/categories/cat_plumber", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "categories", "cat_plumber"] }
           }
         },
         {
           "name": "6.3 Search Services by Keyword",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/categories/search/services?query=tap", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "categories", "search", "services"], "query": [{ "key": "query", "value": "tap" }] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/categories/search/services?query=tap", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "categories", "search", "services"], "query": [{ "key": "query", "value": "tap" }] }
           }
         },
         {
           "name": "6.4 Get Sub-Services List",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/categories/cat_plumber/sub-services", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "categories", "cat_plumber", "sub-services"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/categories/cat_plumber/sub-services", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "categories", "cat_plumber", "sub-services"] }
           }
         },
         {
@@ -421,7 +421,7 @@
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": { "mode": "raw", "raw": "{\n  \"subServiceId\": \"sub_pl_leak\",\n  \"quantity\": 2,\n  \"coupon\": \"SGSAVE30\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/categories/quote", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "categories", "quote"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/categories/quote", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "categories", "quote"] }
           }
         }
       ]
@@ -433,7 +433,7 @@
           "name": "7.1 Get Available Coupons List",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/coupon", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "coupon"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/coupon", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "coupon"] }
           }
         },
         {
@@ -445,14 +445,14 @@
               { "key": "Authorization", "value": "Bearer {{user_token}}" }
             ],
             "body": { "mode": "raw", "raw": "{\n  \"code\": \"SGSAVE30\",\n  \"amount\": 399\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/coupon/validate", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "coupon", "validate"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/coupon/validate", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "coupon", "validate"] }
           }
         },
         {
           "name": "7.3 Get Coupon Details by Code",
           "request": {
             "method": "GET",
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/coupon/SGSAVE30", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "coupon", "SGSAVE30"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/coupon/SGSAVE30", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "coupon", "SGSAVE30"] }
           }
         },
         {
@@ -464,7 +464,7 @@
               { "key": "Authorization", "value": "Bearer {{user_token}}" }
             ],
             "body": { "mode": "raw", "raw": "{\n  \"couponCode\": \"SAVE50\",\n  \"basePrice\": 249\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/coupon/apply", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "coupon", "apply"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/coupon/apply", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "coupon", "apply"] }
           }
         },
         {
@@ -472,7 +472,7 @@
           "request": {
             "method": "GET",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/coupon/my-rewards", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "coupon", "my-rewards"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/coupon/my-rewards", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "coupon", "my-rewards"] }
           }
         }
       ]
@@ -489,7 +489,7 @@
               { "key": "Authorization", "value": "Bearer {{user_token}}" }
             ],
             "body": { "mode": "raw", "raw": "{\n  \"categoryId\": \"cat_plumber\",\n  \"subServiceId\": \"sub_pl_leak\",\n  \"dateTime\": \"2026-07-20T10:00:00Z\",\n  \"timeSlot\": \"10:00 AM - 12:00 PM\",\n  \"address\": \"H.No 124, Sector 15, Gurugram\",\n  \"coupon\": \"SGSAVE30\",\n  \"paymentMethod\": \"UPI\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/bookings", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "bookings"] }
           }
         },
         {
@@ -497,7 +497,7 @@
           "request": {
             "method": "GET",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings?page=1&limit=10", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings"], "query": [{ "key": "page", "value": "1" }, { "key": "limit", "value": "10" }] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/bookings?page=1&limit=10", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "bookings"], "query": [{ "key": "page", "value": "1" }, { "key": "limit", "value": "10" }] }
           }
         },
         {
@@ -505,7 +505,7 @@
           "request": {
             "method": "GET",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings/bk_1784387265906", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings", "bk_1784387265906"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/bookings/bk_1784387265906", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "bookings", "bk_1784387265906"] }
           }
         },
         {
@@ -513,7 +513,7 @@
           "request": {
             "method": "PATCH",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings/bk_1784387265906/cancel", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings", "bk_1784387265906", "cancel"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/bookings/bk_1784387265906/cancel", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "bookings", "bk_1784387265906", "cancel"] }
           }
         },
         {
@@ -525,7 +525,7 @@
               { "key": "Authorization", "value": "Bearer {{user_token}}" }
             ],
             "body": { "mode": "raw", "raw": "{\n  \"dateTime\": \"2026-07-21T14:00:00Z\",\n  \"timeSlot\": \"02:00 PM - 04:00 PM\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings/bk_1784387265906/reschedule", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings", "bk_1784387265906", "reschedule"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/bookings/bk_1784387265906/reschedule", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "bookings", "bk_1784387265906", "reschedule"] }
           }
         },
         {
@@ -537,7 +537,7 @@
               { "key": "Authorization", "value": "Bearer {{provider_token}}" }
             ],
             "body": { "mode": "raw", "raw": "{\n  \"otp\": \"5402\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings/bk_1784387265906/verify-otp", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings", "bk_1784387265906", "verify-otp"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/bookings/bk_1784387265906/verify-otp", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "bookings", "bk_1784387265906", "verify-otp"] }
           }
         },
         {
@@ -549,7 +549,7 @@
               { "key": "Authorization", "value": "Bearer {{provider_token}}" }
             ],
             "body": { "mode": "raw", "raw": "{\n  \"cost\": 150,\n  \"reason\": \"Extra pipe fitting labor and materials\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings/bk_1784387265906/extra-work", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings", "bk_1784387265906", "extra-work"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/bookings/bk_1784387265906/extra-work", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "bookings", "bk_1784387265906", "extra-work"] }
           }
         },
         {
@@ -557,7 +557,7 @@
           "request": {
             "method": "POST",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings/bk_1784387265906/approve-extra", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings", "bk_1784387265906", "approve-extra"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/bookings/bk_1784387265906/approve-extra", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "bookings", "bk_1784387265906", "approve-extra"] }
           }
         },
         {
@@ -565,7 +565,7 @@
           "request": {
             "method": "POST",
             "header": [{ "key": "Authorization", "value": "Bearer {{provider_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings/bk_1784387265906/complete", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings", "bk_1784387265906", "complete"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/bookings/bk_1784387265906/complete", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "bookings", "bk_1784387265906", "complete"] }
           }
         },
         {
@@ -573,7 +573,7 @@
           "request": {
             "method": "GET",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings/bk_1784387265906/invoice", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings", "bk_1784387265906", "invoice"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/bookings/bk_1784387265906/invoice", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "bookings", "bk_1784387265906", "invoice"] }
           }
         },
         {
@@ -581,7 +581,7 @@
           "request": {
             "method": "POST",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/bookings/bk_1784387265906/pay", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "bookings", "bk_1784387265906", "pay"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/bookings/bk_1784387265906/pay", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "bookings", "bk_1784387265906", "pay"] }
           }
         },
         {
@@ -593,7 +593,7 @@
               { "key": "Authorization", "value": "Bearer {{user_token}}" }
             ],
             "body": { "mode": "raw", "raw": "{\n  \"bookingId\": \"bk_1784387265906\",\n  \"stars\": 5,\n  \"comment\": \"Excellent service by expert!\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/review", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "review"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/review", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "review"] }
           }
         }
       ]
@@ -606,7 +606,7 @@
           "request": {
             "method": "GET",
             "header": [{ "key": "Authorization", "value": "Bearer {{provider_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/wallet/balance", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "wallet", "balance"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/wallet/balance", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "wallet", "balance"] }
           }
         },
         {
@@ -618,7 +618,7 @@
               { "key": "Authorization", "value": "Bearer {{provider_token}}" }
             ],
             "body": { "mode": "raw", "raw": "{\n  \"amount\": 500,\n  \"upiId\": \"rajesh@upi\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/wallet/payout", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "wallet", "payout"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/wallet/payout", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "wallet", "payout"] }
           }
         }
       ]
@@ -631,7 +631,7 @@
           "request": {
             "method": "GET",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/notifications", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "notifications"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/notifications", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "notifications"] }
           }
         },
         {
@@ -639,7 +639,7 @@
           "request": {
             "method": "PATCH",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/notifications/notif_101/read", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "notifications", "notif_101", "read"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/notifications/notif_101/read", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "notifications", "notif_101", "read"] }
           }
         },
         {
@@ -647,7 +647,7 @@
           "request": {
             "method": "DELETE",
             "header": [{ "key": "Authorization", "value": "Bearer {{user_token}}" }],
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/notifications/notif_101", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "notifications", "notif_101"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/notifications/notif_101", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "notifications", "notif_101"] }
           }
         }
       ]
@@ -664,7 +664,7 @@
               "mode": "formdata",
               "formdata": [{ "key": "file", "type": "file", "src": [] }]
             },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/upload/image", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "upload", "image"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/upload/image", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "upload", "image"] }
           }
         },
         {
@@ -676,7 +676,7 @@
               "mode": "formdata",
               "formdata": [{ "key": "file", "type": "file", "src": [] }]
             },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/upload/audio", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "upload", "audio"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/upload/audio", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "upload", "audio"] }
           }
         },
         {
@@ -688,7 +688,7 @@
               "mode": "formdata",
               "formdata": [{ "key": "file", "type": "file", "src": [] }]
             },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/upload/document", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "upload", "document"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/upload/document", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "upload", "document"] }
           }
         }
       ]
@@ -705,7 +705,7 @@
               { "key": "Authorization", "value": "Bearer {{user_token}}" }
             ],
             "body": { "mode": "raw", "raw": "{\n  \"subject\": \"Delay in expert arrival\",\n  \"message\": \"Expert has not arrived yet for booking bk_1784387265906\"\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/support/tickets", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "support", "tickets"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/support/tickets", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "support", "tickets"] }
           }
         },
         {
@@ -717,7 +717,7 @@
               { "key": "Authorization", "value": "Bearer {{user_token}}" }
             ],
             "body": { "mode": "raw", "raw": "{\n  \"latitude\": 28.4595,\n  \"longitude\": 77.0266\n}" },
-            "url": { "raw": "http://127.0.0.1:8080/api/v1/support/sos", "protocol": "http", "host": ["127", "0", "0", "1"], "port": "8080", "path": ["api", "v1", "support", "sos"] }
+            "url": { "raw": "https://gharkasathi-backend-neuj.onrender.com/api/v1/support/sos", "protocol": "https", "host": ["gharkasathi-backend-neuj", "onrender", "com"], "path": ["api", "v1", "support", "sos"] }
           }
         }
       ]
