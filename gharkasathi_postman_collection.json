@@ -13,7 +13,7 @@
     },
     {
       "key": "user_token",
-      "value": "",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzcl9jdXN0b21lcl9kZW1vIiwicGhvbmUiOiI5ODc2NTQzMjEwIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3ODQzOTA2MDB9.dummy_token_signature_for_easy_testing",
       "type": "string"
     }
   ],
