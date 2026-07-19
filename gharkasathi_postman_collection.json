@@ -13,7 +13,7 @@
     },
     {
       "key": "user_token",
-      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzcl9jdXN0b21lcl9kZW1vIiwicGhvbmUiOiI5ODc2NTQzMjEwIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3ODQzOTA2MDB9.dummy_token",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InVzcl9jdXN0b21lcl9kZW1vIiwicGhvbmUiOiI5ODc2NTQzMjEwIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3ODQ0NDIxMzYsImV4cCI6MTgxNTk3ODEzNn0.gwVVHE0rMiHxzBRDvxaZipFnsQXW1AgpoHNIGQ3i1t8",
       "type": "string"
     },
     {
