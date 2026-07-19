@@ -462,8 +462,13 @@
           "request": {
             "method": "POST",
             "header": [
+              { "key": "Content-Type", "value": "application/json" },
               { "key": "Authorization", "value": "Bearer {{user_token}}" }
             ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800\"\n}"
+            },
             "url": {
               "raw": "{{baseUrl}}/upload/image",
               "host": ["{{baseUrl}}"],
@@ -476,8 +481,13 @@
           "request": {
             "method": "POST",
             "header": [
+              { "key": "Content-Type", "value": "application/json" },
               { "key": "Authorization", "value": "Bearer {{user_token}}" }
             ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"https://s3.amazonaws.com/gharkasathi/sample_voice_note.mp3\"\n}"
+            },
             "url": {
               "raw": "{{baseUrl}}/upload/audio",
               "host": ["{{baseUrl}}"],

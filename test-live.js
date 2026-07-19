@@ -17,17 +17,6 @@ const runLiveTests = async () => {
     const healthData = await healthRes.json();
     if (healthRes.ok) console.log(green('   ✓ Healthcheck passed!\n'));
 
-    // 2. App Version
-    console.log('2. Testing App Version Check...');
-    const versionRes = await fetch(`${BASE_URL}/app/version`);
-    const versionData = await versionRes.json();
-    if (versionRes.ok) console.log(green(`   ✓ Version Check passed! (Latest: ${versionData.latestVersion})\n`));
-
-    // 3. Maintenance Check
-    console.log('3. Testing App Maintenance Status...');
-    const maintRes = await fetch(`${BASE_URL}/app/maintenance`);
-    if (maintRes.ok) console.log(green('   ✓ Maintenance Check passed!\n'));
-
     // 4. Send Customer OTP
     console.log('4. Testing Send Customer Mobile OTP...');
     const sendOtpRes = await fetch(`${BASE_URL}/auth/send-otp`, {

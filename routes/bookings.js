@@ -559,9 +559,29 @@ router.post('/:id/reject-extra', verifyToken, async (req, res) => {
   });
 });
 
-// Backward compatibility extra-work approve
+// Backward compatibility extra-work approve/respond
 router.post('/:id/extra-work/approve', verifyToken, async (req, res) => {
   req.url = `/${req.params.id}/approve-extra`;
+  return router.handle(req, res);
+});
+
+router.post('/:id/extra-work/respond', verifyToken, async (req, res) => {
+  const { approved } = req.body;
+  if (approved !== false) {
+    req.url = `/${req.params.id}/approve-extra`;
+  } else {
+    req.url = `/${req.params.id}/reject-extra`;
+  }
+  return router.handle(req, res);
+});
+
+router.post('/:id/extra-work', verifyToken, async (req, res) => {
+  const { approved } = req.body;
+  if (approved !== false) {
+    req.url = `/${req.params.id}/approve-extra`;
+  } else {
+    req.url = `/${req.params.id}/reject-extra`;
+  }
   return router.handle(req, res);
 });
 

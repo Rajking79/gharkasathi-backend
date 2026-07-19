@@ -242,6 +242,68 @@ async function runTests() {
     body: JSON.stringify({ bookingId: activeBookingId || 'bk_123' })
   });
 
+  // 18g. FCM Device Token Register
+  await testEndpoint('18g. FCM Device Token Register', `${BASE_URL}/auth/device-token`, {
+    method: 'POST',
+    headers: authHeaders,
+    body: JSON.stringify({ fcmToken: 'fcm_test_123' })
+  });
+
+  // 18h. Address PUT update
+  await testEndpoint('18h. Address PUT Update', `${BASE_URL}/address/addr_default_101`, {
+    method: 'PUT',
+    headers: authHeaders,
+    body: JSON.stringify({ house: 'Flat 999' })
+  });
+
+  // 18i. Address DELETE
+  await testEndpoint('18i. Address DELETE', `${BASE_URL}/address/addr_default_101`, {
+    method: 'DELETE',
+    headers: authHeaders
+  });
+
+  // 18j. Address PATCH Default
+  await testEndpoint('18j. Address PATCH Default', `${BASE_URL}/address/default`, {
+    method: 'PATCH',
+    headers: authHeaders,
+    body: JSON.stringify({ addressId: 'addr_default_101' })
+  });
+
+  // 18k. Payment Create Intent
+  await testEndpoint('18k. Payment Create Intent', `${BASE_URL}/payment/create`, {
+    method: 'POST',
+    headers: authHeaders,
+    body: JSON.stringify({ bookingId: activeBookingId || 'bk_123', amount: 450 })
+  });
+
+  // 18l. Payment Verify Gateway
+  await testEndpoint('18l. Payment Verify Gateway', `${BASE_URL}/payment/verify`, {
+    method: 'POST',
+    headers: authHeaders,
+    body: JSON.stringify({ paymentIntentId: 'pi_123', bookingId: activeBookingId || 'bk_123' })
+  });
+
+  // 18m. Upload Image JSON / Fallback
+  await testEndpoint('18m. Upload Image', `${BASE_URL}/upload/image`, {
+    method: 'POST',
+    headers: authHeaders,
+    body: JSON.stringify({ url: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800' })
+  });
+
+  // 18n. Upload Audio JSON / Fallback
+  await testEndpoint('18n. Upload Audio Voice Note', `${BASE_URL}/upload/audio`, {
+    method: 'POST',
+    headers: authHeaders,
+    body: JSON.stringify({ url: 'https://s3.amazonaws.com/voice.mp3' })
+  });
+
+  // 18o. Respond Extra Work
+  await testEndpoint('18o. Respond Extra Work', `${BASE_URL}/bookings/${activeBookingId || 'bk_123'}/extra-work/respond`, {
+    method: 'POST',
+    headers: authHeaders,
+    body: JSON.stringify({ approved: true })
+  });
+
   // 19. Verify Splash Screen route returns 404 (as requested by user)
   try {
     const splashRes = await fetch(`${BASE_URL}/app/version`);
